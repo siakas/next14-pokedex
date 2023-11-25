@@ -1,4 +1,6 @@
 import Providers from '@/app/provider'
+import MainContent from '@/components/layouts/MainContent'
+import PageBackground from '@/components/layouts/PageBackground'
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
@@ -18,7 +20,10 @@ export default function RootLayout({
   return (
     <html className="dark" lang="ja">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <PageBackground />
+        <MainContent>
+          <Providers>{children}</Providers>
+        </MainContent>
       </body>
     </html>
   )
