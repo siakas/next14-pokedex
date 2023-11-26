@@ -1,5 +1,5 @@
 import { getAllPokemons } from '@/utils/getData'
-import { Image } from '@nextui-org/react'
+import { Image, Link } from '@nextui-org/react'
 
 interface Data {
   entry_number: number
@@ -31,13 +31,15 @@ const Home = async () => {
           <li key={pokemon.id}>
             {pokemon.pokemon_species.name}
             <br />
-            <Image
-              alt=""
-              height={100}
-              loading="lazy"
-              src={pokemon.image}
-              width={100}
-            />
+            <Link href={`/pokemon/${pokemon.pokemon_species.name}`}>
+              <Image
+                alt=""
+                height={100}
+                loading="lazy"
+                src={pokemon.image}
+                width={100}
+              />
+            </Link>
           </li>
         ))}
       </ul>

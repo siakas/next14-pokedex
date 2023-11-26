@@ -23,6 +23,7 @@ const MainInfo = ({ pokemon, species }: Props) => {
         alt={pokemon.name}
         className="absolute z-10 w-[280px] sm:w-[380px]"
         isBlurred={true}
+        loading="lazy"
         src={pokemon.sprites.other['official-artwork'].front_default ?? ''}
         style={{ maxWidth: 'none', transform: 'translate(-6%, -10%)' }}
       />

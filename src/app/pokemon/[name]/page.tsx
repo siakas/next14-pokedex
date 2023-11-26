@@ -10,6 +10,7 @@ import {
   getPokemonByPokemonName,
   getSpeciesByPokemonName,
 } from '@/utils/getData'
+import { Button, Link } from '@nextui-org/react'
 
 const PokemonDetailPage = async ({ params }: { params: { name: string } }) => {
   const { name } = params
@@ -53,6 +54,13 @@ const PokemonDetailPage = async ({ params }: { params: { name: string } }) => {
 
         {/* タイプ相性による弱点 */}
         <DamageData pokemon={pokemon} />
+      </div>
+
+      {/* 戻るボタン */}
+      <div className="mt-10 flex justify-center">
+        <Button as={Link} color="primary" href="/" size="lg">
+          トップへ戻る
+        </Button>
       </div>
     </div>
   )
