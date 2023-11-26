@@ -32,7 +32,7 @@ const StatData = ({ pokemon }: Props) => {
           種族値（
           {pokemon.stats.reduce((total, stat) => total + stat.base_stat, 0)}）
         </Heading>
-        <Table className="h-full w-full">
+        <Table aria-label="種族値" className="h-full w-full">
           <TableHeader>
             <TableColumn className="w-28">ステータス</TableColumn>
             <TableColumn className="w-16">値</TableColumn>
@@ -45,6 +45,7 @@ const StatData = ({ pokemon }: Props) => {
                 <TableCell className="text-right">{stat.base_stat}</TableCell>
                 <TableCell>
                   <Progress
+                    aria-label={stat.stat.name}
                     className="w-full"
                     classNames={{
                       indicator: statRanker(stat.base_stat),

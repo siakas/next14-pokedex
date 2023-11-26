@@ -20,7 +20,7 @@ const OtherData = ({ species }: Props) => {
   return (
     <div className="rounded-lg dark:bg-transparent">
       <Heading>その他</Heading>
-      <Table hideHeader isStriped>
+      <Table aria-label="その他" hideHeader isStriped>
         <TableHeader>
           <TableColumn>名前</TableColumn>
           <TableColumn>役割</TableColumn>

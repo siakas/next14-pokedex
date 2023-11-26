@@ -25,12 +25,9 @@ const Home = async () => {
 
   return (
     <div>
-      Home
       <ul className="grid grid-cols-5 gap-5">
         {pokemonList.map((pokemon) => (
-          <li key={pokemon.id}>
-            {pokemon.pokemon_species.name}
-            <br />
+          <li className="text-center" key={pokemon.id}>
             <Link href={`/pokemon/${pokemon.pokemon_species.name}`}>
               <Image
                 alt=""

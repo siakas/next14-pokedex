@@ -24,6 +24,7 @@ const CaptureRateProgress = ({ captureRate, pokemonHP }: Props) => {
     <Card>
       <CardBody className="items-center justify-center pb-0">
         <CircularProgress
+          aria-label="捕獲成功率"
           className="mb-2"
           classNames={{
             svg: 'w-28 h-28 drop-shadow-md',
