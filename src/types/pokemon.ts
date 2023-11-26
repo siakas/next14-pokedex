@@ -1,4 +1,4 @@
-type PokemonList = {
+export type PokemonList = {
   count: number
   next: string | null
   previous: string | null
@@ -8,15 +8,8 @@ type PokemonList = {
   }[]
 }
 
-type Pokemon = {
-  abilities: {
-    ability: {
-      name: string
-      url: string
-    }
-    is_hidden: boolean
-    slot: number
-  }[]
+export type Pokemon = {
+  abilities: PokemonAbility[]
   base_experience: number
   forms: {
     name: string
@@ -274,30 +267,42 @@ type Pokemon = {
       url: string
     }
   }[]
-  types: {
-    slot: number
-    type: {
-      name:
-        | 'bug'
-        | 'dark'
-        | 'dragon'
-        | 'electric'
-        | 'fairy'
-        | 'fighting'
-        | 'fire'
-        | 'flying'
-        | 'ghost'
-        | 'grass'
-        | 'ground'
-        | 'ice'
-        | 'normal'
-        | 'poison'
-        | 'psychic'
-        | 'rock'
-        | 'steel'
-        | 'water'
-      url: string
-    }
-  }[]
+  types: PokemonType[]
   weight: number
+}
+
+export type PokemonAbility = {
+  ability: {
+    name: string
+    url: string
+  }
+  is_hidden: boolean
+  jaName?: string
+  slot: number
+}
+
+export type PokemonType = {
+  slot: number
+  type: {
+    name:
+      | 'bug'
+      | 'dark'
+      | 'dragon'
+      | 'electric'
+      | 'fairy'
+      | 'fighting'
+      | 'fire'
+      | 'flying'
+      | 'ghost'
+      | 'grass'
+      | 'ground'
+      | 'ice'
+      | 'normal'
+      | 'poison'
+      | 'psychic'
+      | 'rock'
+      | 'steel'
+      | 'water'
+    url: string
+  }
 }
