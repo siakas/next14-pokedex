@@ -1,11 +1,21 @@
 import pokeApi from '@/api/pokeApi'
-import { Pokedex, Pokemon, Species, Type } from '@/types'
+import { Pokedex, Pokemon, PokemonList, Species, Type } from '@/types'
 
 // すべてのポケモン一覧を取得
 export const getAllPokemons = async () => {
   try {
     const res = await pokeApi.get<Pokedex>('/pokedex/1')
     return res.data.pokemon_entries
+  } catch (error) {
+    throw error
+  }
+}
+
+// 20 件ずつのポケモン一覧を取得
+export const getPokemonList = async () => {
+  try {
+    const res = await pokeApi.get<PokemonList>('/pokemon')
+    return res.data
   } catch (error) {
     throw error
   }

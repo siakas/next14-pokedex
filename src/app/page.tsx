@@ -1,19 +1,16 @@
-import { getAllPokemons } from '@/utils/getData'
+import { getPokemonList } from '@/utils/getData'
 import { Image, Link } from '@nextui-org/react'
 
 interface Data {
-  entry_number: number
   id: number
   image: string
-  pokemon_species: {
-    name: string
-    url: string
-  }
+  name: string
+  url: string
 }
 
 const Home = async () => {
-  const data = await getAllPokemons()
-  const pokemonList: Data[] = data.map((pokemon, index) => {
+  const { results } = await getPokemonList()
+  const pokemonList: Data[] = results.map((pokemon, index) => {
     return {
       ...pokemon,
       id: index + 1,
@@ -28,7 +25,7 @@ const Home = async () => {
       <ul className="grid grid-cols-5 gap-5">
         {pokemonList.map((pokemon) => (
           <li className="text-center" key={pokemon.id}>
-            <Link href={`/pokemon/${pokemon.pokemon_species.name}`}>
+            <Link href={`/pokemon/${pokemon.name}`}>
               <Image
                 alt=""
                 height={100}
