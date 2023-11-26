@@ -21,14 +21,14 @@ const HatchData = ({ species }: Props) => {
   return (
     <div className="rounded-lg dark:bg-transparent">
       <Heading>タマゴと性別</Heading>
-      <Table hideHeader isStriped>
+      <Table aria-label="タマゴと性別" hideHeader isStriped>
         <TableHeader>
           <TableColumn>名前</TableColumn>
           <TableColumn>役割</TableColumn>
         </TableHeader>
         <TableBody>
           <TableRow key="1">
-            <TableCell>タマゴグループ</TableCell>
+            <TableCell className="font-semibold">タマゴグループ</TableCell>
             <TableCell className="text-left">
               <ul className="flex">
                 {species.egg_groups.map((group, index) => (
@@ -43,11 +43,11 @@ const HatchData = ({ species }: Props) => {
             </TableCell>
           </TableRow>
           <TableRow key="2">
-            <TableCell>孵化サイクル</TableCell>
+            <TableCell className="font-semibold">孵化サイクル</TableCell>
             <TableCell>{species.hatch_counter}</TableCell>
           </TableRow>
           <TableRow key="3">
-            <TableCell>性別</TableCell>
+            <TableCell className="font-semibold">性別</TableCell>
             <TableCell className="flex flex-row">
               {species.gender_rate < 0 ? (
                 <span>なし</span>

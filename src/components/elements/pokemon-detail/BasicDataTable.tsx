@@ -23,7 +23,7 @@ const BasicDataTable = ({ abilities, pokemon, species }: Props) => {
 
   return (
     <Table
-      aria-label="トレーニング情報"
+      aria-label="基礎データ"
       className="w-full text-left"
       hideHeader
       isHeaderSticky
