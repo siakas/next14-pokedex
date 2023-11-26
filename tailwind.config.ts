@@ -31,12 +31,6 @@ const config: Config = {
     'bg-fairy',
   ],
   theme: {
-    borderColor: {
-      black: {
-        900: '#202020',
-        950: '#02010a',
-      },
-    },
     extend: {
       backgroundColor: {
         black: {
@@ -61,6 +55,12 @@ const config: Config = {
         rock: '#bcb889',
         steel: '#6baed3',
         water: '#2a91ff',
+      },
+      borderColor: {
+        black: {
+          900: '#202020',
+          950: '#02010a',
+        },
       },
     },
   },
