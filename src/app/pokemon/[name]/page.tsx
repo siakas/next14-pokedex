@@ -13,6 +13,8 @@ import {
 import { Button, Link } from '@nextui-org/react'
 
 const PokemonDetailPage = async ({ params }: { params: { name: string } }) => {
+  // await new Promise((resolve) => setTimeout(resolve, 1000))
+
   const { name } = params
 
   // params.name からポケモン情報と種族情報を取得
