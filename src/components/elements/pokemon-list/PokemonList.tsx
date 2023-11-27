@@ -14,7 +14,7 @@ interface Props {
   offset: number
 }
 
-const PokemonList = async ({ limit = 20, offset = 0 }) => {
+const PokemonList = async ({ limit = 30, offset = 0 }) => {
   const { results } = await getPokemonList(limit, offset)
   const pokemonList: Data[] = results.map((pokemon, index) => {
     return {
