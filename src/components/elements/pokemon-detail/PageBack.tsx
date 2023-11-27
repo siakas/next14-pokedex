@@ -11,7 +11,7 @@ const PageBack = () => {
       <Button
         color="primary"
         onClick={() => {
-          router.back()
+          router.push('/')
         }}
         size="lg"
       >
