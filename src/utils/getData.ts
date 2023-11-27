@@ -36,10 +36,30 @@ export const getPokemonByPokemonName = async (name: string) => {
   }
 }
 
+// ポケモン ID からポケモンデータ（特性、タイプ、技、画像等）を取得
+export const getPokemonByPokemonId = async (id: number) => {
+  try {
+    const res = await pokeApi.get<Pokemon>(`/pokemon/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
 // ポケモン名からポケモン種族情報（言語ごとの名称、フレーバーテキスト等）を取得
 export const getSpeciesByPokemonName = async (name: string) => {
   try {
     const res = await pokeApi.get<Species>(`/pokemon-species/${name}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+// ポケモン ID からポケモン種族情報（言語ごとの名称、フレーバーテキスト等）を取得
+export const getSpeciesByPokemonId = async (id: number) => {
+  try {
+    const res = await pokeApi.get<Species>(`/pokemon-species/${id}`)
     return res.data
   } catch (error) {
     throw error
