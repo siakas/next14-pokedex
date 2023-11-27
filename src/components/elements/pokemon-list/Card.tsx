@@ -14,7 +14,7 @@ const Card = async ({ pokemonId }: { pokemonId: number }) => {
   const jaName = species.names.find((name) => name.language.name === 'ja-Hrkt')
 
   return (
-    <li className="text-center" key={pokemon.id}>
+    <li className="text-center">
       <Link
         className="flex aspect-square w-full flex-col items-center justify-center rounded-lg bg-gray-700 text-inherit"
         href={`/pokemon/${pokemon.id}`}

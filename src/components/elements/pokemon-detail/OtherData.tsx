@@ -62,6 +62,7 @@ const OtherData = ({ species }: Props) => {
                   />{' '}
                   {species.names[2].name}
                 </li>
+                {/*
                 <li className="flex items-center gap-x-1">
                   <Image
                     alt=""
@@ -70,6 +71,7 @@ const OtherData = ({ species }: Props) => {
                   />{' '}
                   {species.names[10].name}
                 </li>
+                */}
               </ul>
             </TableCell>
           </TableRow>
