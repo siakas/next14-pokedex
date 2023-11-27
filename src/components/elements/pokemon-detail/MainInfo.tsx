@@ -29,7 +29,7 @@ const MainInfo = ({ pokemon, species }: Props) => {
       />
 
       <div className="rounded-lg dark:bg-transparent">
-        <Card className="border-gray-300 h-[30rem] w-[16rem] border-4 bg-transparent py-4 sm:h-[34rem] sm:w-[21rem]">
+        <Card className="h-[30rem] w-[16rem] border-4 border-gray-300 bg-transparent py-4 sm:h-[34rem] sm:w-[21rem]">
           {/* 名前 */}
           <MainInfoName genus={jaGenus} name={jaName} />
 

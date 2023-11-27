@@ -5,13 +5,12 @@ import DexNumber from '@/components/elements/pokemon-detail/DexNumber'
 import HatchData from '@/components/elements/pokemon-detail/HatchData'
 import MainInfo from '@/components/elements/pokemon-detail/MainInfo'
 import OtherData from '@/components/elements/pokemon-detail/OtherData'
+import PageBack from '@/components/elements/pokemon-detail/PageBack'
 import StatData from '@/components/elements/pokemon-detail/StatData'
 import {
   getPokemonByPokemonName,
   getSpeciesByPokemonName,
 } from '@/utils/getData'
-import { Button } from '@nextui-org/react'
-import Link from 'next/link'
 
 const PokemonDetail = async ({ pokemonName }: { pokemonName: string }) => {
   // 遅延確認
@@ -59,11 +58,7 @@ const PokemonDetail = async ({ pokemonName }: { pokemonName: string }) => {
       </div>
 
       {/* 戻るボタン */}
-      <div className="mt-10 flex justify-center">
-        <Button as={Link} color="primary" href="/" size="lg">
-          トップへ戻る
-        </Button>
-      </div>
+      <PageBack />
     </div>
   )
 }

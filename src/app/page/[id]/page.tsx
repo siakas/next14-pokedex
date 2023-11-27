@@ -1,3 +1,4 @@
+import PageNav from '@/components/elements/pokemon-list/PageNav'
 import PokemonList from '@/components/elements/pokemon-list/PokemonList'
 
 const PageDetail = ({ params }: { params: { id: string } }) => {
@@ -7,7 +8,12 @@ const PageDetail = ({ params }: { params: { id: string } }) => {
   // offset の値をページ番号から取得
   const offset: number = (pageId - 1) * 30
 
-  return <PokemonList offset={offset} />
+  return (
+    <>
+      <PageNav page={pageId} />
+      <PokemonList offset={offset} />
+    </>
+  )
 }
 
 export default PageDetail
