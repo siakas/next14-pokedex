@@ -35,7 +35,7 @@ const BasicDataTable = ({ abilities, pokemon, species }: Props) => {
       </TableHeader>
       <TableBody>
         <TableRow key="1">
-          <TableCell className="w-36 font-semibold">特性：</TableCell>
+          <TableCell className="min-w-[90px] font-semibold">特性：</TableCell>
           <TableCell className="whitespace-nowrap">
             <ul className="flex flex-col gap-y-1">
               {abilities.map((ability, index) => (
@@ -59,9 +59,7 @@ const BasicDataTable = ({ abilities, pokemon, species }: Props) => {
           <TableCell>{species.base_happiness}</TableCell>
         </TableRow>
         <TableRow key="4">
-          <TableCell className="whitespace-nowrap font-semibold">
-            経験値タイプ：
-          </TableCell>
+          <TableCell className="font-semibold">経験値タイプ：</TableCell>
           <TableCell>{growthRateMapping[species.growth_rate.name]}</TableCell>
         </TableRow>
         <TableRow key="5">
