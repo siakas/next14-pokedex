@@ -16,7 +16,6 @@ export const getPokemonList = async (
   limit: number = 30,
   offset: number = 0,
 ) => {
-  console.log(`/pokemon?limit=${limit}&offset=${offset}`)
   try {
     const res = await pokeApi.get<PokemonList>(
       `/pokemon?limit=${limit}&offset=${offset}`,
