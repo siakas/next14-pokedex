@@ -7,19 +7,16 @@ import MainInfo from '@/components/elements/pokemon-detail/MainInfo'
 import OtherData from '@/components/elements/pokemon-detail/OtherData'
 import PageBack from '@/components/elements/pokemon-detail/PageBack'
 import StatData from '@/components/elements/pokemon-detail/StatData'
-import {
-  getPokemonByPokemonName,
-  getSpeciesByPokemonName,
-} from '@/utils/getData'
+import { getPokemonByPokemonId, getSpeciesByPokemonId } from '@/utils/getData'
 
-const PokemonDetail = async ({ pokemonName }: { pokemonName: string }) => {
+const PokemonDetail = async ({ pokemonId }: { pokemonId: number }) => {
   // 遅延確認
   // await new Promise((resolve) => setTimeout(resolve, 1000))
 
   // params.name からポケモン情報と種族情報を取得
   const [pokemon, species] = await Promise.all([
-    getPokemonByPokemonName(pokemonName),
-    getSpeciesByPokemonName(pokemonName),
+    getPokemonByPokemonId(pokemonId),
+    getSpeciesByPokemonId(pokemonId),
   ])
 
   // 図鑑番号の設定

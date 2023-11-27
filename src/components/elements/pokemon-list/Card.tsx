@@ -1,24 +1,23 @@
-import {
-  getPokemonByPokemonName,
-  getSpeciesByPokemonName,
-} from '@/utils/getData'
+import { getPokemonByPokemonId, getSpeciesByPokemonId } from '@/utils/getData'
 import { typesMapping } from '@/utils/translator'
 import { Image } from '@nextui-org/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 
-const Card = async ({ pokemonName }: { pokemonName: string }) => {
+const Card = async ({ pokemonId }: { pokemonId: number }) => {
   const [species, pokemon] = await Promise.all([
-    getSpeciesByPokemonName(pokemonName),
-    getPokemonByPokemonName(pokemonName),
+    getSpeciesByPokemonId(pokemonId),
+    getPokemonByPokemonId(pokemonId),
   ])
+
+  // ポケモンの日本語名を取得
   const jaName = species.names.find((name) => name.language.name === 'ja-Hrkt')
 
   return (
-    <li className="text-center" key={pokemon.id}>
+    <li className="text-center">
       <Link
         className="flex aspect-square w-full flex-col items-center justify-center rounded-lg bg-gray-700 text-inherit"
-        href={`/pokemon/${pokemon.name}`}
+        href={`/pokemon/${pokemon.id}`}
       >
         <Image
           alt=""
