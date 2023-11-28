@@ -1,13 +1,14 @@
 'use client'
 
 import { Button } from '@nextui-org/react'
+import clsx from 'clsx'
 import { useRouter } from 'next/navigation'
 
-const PageBack = () => {
+const PageBack = ({ className }: { className: string }) => {
   const router = useRouter()
 
   return (
-    <div className="mt-10 flex justify-center">
+    <div className={clsx('mt-10 flex justify-center', className)}>
       <Button
         color="primary"
         onClick={() => {

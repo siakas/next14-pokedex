@@ -12,10 +12,9 @@ export const getAllPokemons = async () => {
 }
 
 // 任意の件数ずつのポケモン一覧を取得
-export const getPokemonList = async (
-  limit: number = 30,
-  offset: number = 0,
-) => {
+export const getPokemonList = async (offset: number = 0) => {
+  const limit = 30 // 表示件数
+
   try {
     const res = await pokeApi.get<PokemonList>(
       `/pokemon?limit=${limit}&offset=${offset}`,

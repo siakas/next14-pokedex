@@ -2,10 +2,13 @@ export type PokemonList = {
   count: number
   next: string | null
   previous: string | null
-  results: {
-    name: string
-    url: string
-  }[]
+  results: PokemonListResult[]
+}
+
+export type PokemonListResult = {
+  id: number
+  name: string
+  url: string
 }
 
 export type Pokemon = {
