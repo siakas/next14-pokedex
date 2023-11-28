@@ -25,33 +25,14 @@ export const getPokemonList = async (offset: number = 0) => {
   }
 }
 
-// ポケモン名からポケモンデータ（特性、タイプ、技、画像等）を取得
-export const getPokemonByPokemonName = async (name: string) => {
-  try {
-    const res = await pokeApi.get<Pokemon>(`/pokemon/${name}`)
-    return res.data
-  } catch (error) {
-    throw error
-  }
-}
-
 // ポケモン ID からポケモンデータ（特性、タイプ、技、画像等）を取得
 export const getPokemonByPokemonId = async (id: number) => {
   try {
     const res = await pokeApi.get<Pokemon>(`/pokemon/${id}`)
     return res.data
   } catch (error) {
-    throw error
-  }
-}
-
-// ポケモン名からポケモン種族情報（言語ごとの名称、フレーバーテキスト等）を取得
-export const getSpeciesByPokemonName = async (name: string) => {
-  try {
-    const res = await pokeApi.get<Species>(`/pokemon-species/${name}`)
-    return res.data
-  } catch (error) {
-    throw error
+    // データ取得がエラーの場合は null を返す
+    return null
   }
 }
 
@@ -61,7 +42,8 @@ export const getSpeciesByPokemonId = async (id: number) => {
     const res = await pokeApi.get<Species>(`/pokemon-species/${id}`)
     return res.data
   } catch (error) {
-    throw error
+    // データ取得がエラーの場合は null を返す
+    return null
   }
 }
 

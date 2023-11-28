@@ -7,18 +7,14 @@ import MainInfo from '@/components/elements/pokemon-detail/MainInfo'
 import OtherData from '@/components/elements/pokemon-detail/OtherData'
 import PageBack from '@/components/elements/pokemon-detail/PageBack'
 import StatData from '@/components/elements/pokemon-detail/StatData'
-import { getPokemonByPokemonId, getSpeciesByPokemonId } from '@/utils/getData'
+import { Pokemon, Species } from '@/types'
 
-const PokemonDetail = async ({ pokemonId }: { pokemonId: number }) => {
-  // 遅延確認
-  // await new Promise((resolve) => setTimeout(resolve, 1000))
+interface Props {
+  pokemon: Pokemon
+  species: Species
+}
 
-  // params.name からポケモン情報と種族情報を取得
-  const [pokemon, species] = await Promise.all([
-    getPokemonByPokemonId(pokemonId),
-    getSpeciesByPokemonId(pokemonId),
-  ])
-
+const PokemonDetail = ({ pokemon, species }: Props) => {
   // 図鑑番号の設定
   const dexNumber = `#${pokemon.id.toString().padStart(4, '0')}`
 

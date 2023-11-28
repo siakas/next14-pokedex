@@ -5,7 +5,7 @@ import { getPokemonList } from '@/utils/getData'
 const Home = async () => {
   const { results } = await getPokemonList()
 
-  // 取得したポケモン一覧にそれぞれ id を設定した新たな配列を作成
+  // 取得したポケモン一覧にそれぞれポケモンの id を設定した新たな配列を作成
   const pokemonList = results.map((pokemon) => {
     return {
       ...pokemon,

@@ -4,7 +4,7 @@ import { Button } from '@nextui-org/react'
 import clsx from 'clsx'
 import { useRouter } from 'next/navigation'
 
-const PageBack = ({ className }: { className: string }) => {
+const PageBack = ({ className }: { className?: string }) => {
   const router = useRouter()
 
   return (
