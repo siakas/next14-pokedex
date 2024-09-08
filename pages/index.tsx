@@ -12,9 +12,7 @@ export default function Home() {
       <main>
         <h1>Posts</h1>
         <ul>
-          {posts.map((post) => (
-            <li key={post.id}>{post.title}</li>
-          ))}
+          {posts && posts.map((post) => <li key={post.id}>{post.title}</li>)}
         </ul>
       </main>
     </Layout>
