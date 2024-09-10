@@ -1,27 +1,48 @@
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import Layout from '@/components/layout/Layout'
-import { usePosts } from '@/hooks/usePosts'
+import { getAllPokemon } from '@/utils/pokemon'
 
 export default function Home() {
-  const { data: posts, isLoading, isError } = usePosts()
+  const initialUrl = 'https://pokeapi.co/api/v2/pokemon'
+  const [offset, setOffset] = useState(0)
 
-  if (isLoading) return <div>Loading...</div>
-  if (isError) return <div>Error fetching posts</div>
+  /**
+   * 前のページへ移動
+   */
+  const handlePrevButton = () => {
+    if (offset === 0) return
+    setOffset((prev) => prev - 20)
+  }
+
+  /**
+   * 次のページへ移動
+   */
+  const handleNextButton = () => {
+    setOffset((prev) => prev + 20)
+  }
+
+  // ポケモン一覧を取得する useQuery
+  const { data: pokemonList, isLoading: isPokemonListLoading } = useQuery({
+    queryKey: ['pokemonList', initialUrl, offset],
+    queryFn: () => getAllPokemon(initialUrl, offset),
+  })
 
   return (
     <Layout>
       <main className="p-8">
-        <h1 className="mb-4 text-2xl font-bold">Posts</h1>
-        <ul>
-          {posts &&
-            posts.map((post) => (
-              <li
-                key={post.id}
-                className="mb-2 rounded border p-3 even:bg-gray-50"
-              >
-                {post.title}
+        <h1 className="mb-4 text-2xl font-bold">ポケモン一覧</h1>
+        {isPokemonListLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <ul>
+            {pokemonList?.results.map((pokemon) => (
+              <li key={pokemon.name} className="mb-2 rounded border p-3">
+                {pokemon.name}
               </li>
             ))}
-        </ul>
+          </ul>
+        )}
       </main>
     </Layout>
   )
