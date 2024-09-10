@@ -9,10 +9,18 @@ export default function Home() {
 
   return (
     <Layout>
-      <main>
-        <h1>Posts</h1>
+      <main className="p-8">
+        <h1 className="mb-4 text-2xl font-bold">Posts</h1>
         <ul>
-          {posts && posts.map((post) => <li key={post.id}>{post.title}</li>)}
+          {posts &&
+            posts.map((post) => (
+              <li
+                key={post.id}
+                className="mb-2 rounded border p-3 even:bg-gray-50"
+              >
+                {post.title}
+              </li>
+            ))}
         </ul>
       </main>
     </Layout>
