@@ -16,7 +16,7 @@ export default function Home() {
    */
   const handlePrevButton = () => {
     if (offset === 0) return
-    setOffset((prev) => prev - 20)
+    setOffset((prev) => prev - 30)
     setPage((prev) => prev - 1)
     router.push(`/?page=${page - 1}`)
   }
@@ -25,7 +25,7 @@ export default function Home() {
    * 次のページへ移動
    */
   const handleNextButton = () => {
-    setOffset((prev) => prev + 20)
+    setOffset((prev) => prev + 30)
     setPage((prev) => prev + 1)
     router.push(`/?page=${page + 1}`)
   }

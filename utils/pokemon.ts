@@ -5,7 +5,7 @@ import type { PokemonListAPIResponse } from '@/types/pokemon'
  */
 export const getAllPokemon = async (url: string, offset: number = 0) => {
   try {
-    const res = await fetch(`${url}?offset=${offset}&limit=20`)
+    const res = await fetch(`${url}?offset=${offset}&limit=30`)
     const data: PokemonListAPIResponse = await res.json()
     return data
   } catch (error) {
