@@ -3,13 +3,14 @@ import { Button } from '@/components/ui/button'
 import { useGetPokemonList } from '@/hooks/useGetPokemonList'
 
 export const PageNavigation = () => {
-  const { handlePrevButton, handleNextButton } = useGetPokemonList()
+  const { handlePrevButton, handleNextButton, offset } = useGetPokemonList()
 
   return (
     <div className="my-6 flex justify-between">
       <Button
         onClick={handlePrevButton}
         className="bg-blue-500 pr-6 hover:bg-blue-700"
+        disabled={offset === 0}
       >
         <ChevronLeft className="mr-2 size-5" />
         前の30件

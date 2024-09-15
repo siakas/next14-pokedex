@@ -1,9 +1,12 @@
-import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
+import { usePokemonListStore } from '@/store/pokemonListStore'
 import { getPokemonList } from '@/utils/pokemon'
 
 export const useGetPokemonList = () => {
-  const [offset, setOffset] = useState(0)
+  const { offset, setOffset } = usePokemonListStore((state) => ({
+    offset: state.offset,
+    setOffset: state.actions.setOffset,
+  }))
   const limit = 30 // 表示件数（TODO: Zustand で共通化したい）
 
   /**
@@ -11,14 +14,14 @@ export const useGetPokemonList = () => {
    */
   const handlePrevButton = () => {
     if (offset === 0) return
-    setOffset((prev) => prev - limit)
+    setOffset(offset - limit)
   }
 
   /**
    * 次のページへ移動
    */
   const handleNextButton = () => {
-    setOffset((prev) => prev + limit)
+    setOffset(offset + limit)
   }
 
   // ポケモン一覧をオフセットごとに取得する useQuery
@@ -32,5 +35,6 @@ export const useGetPokemonList = () => {
     isLoading,
     handlePrevButton,
     handleNextButton,
+    offset,
   }
 }
