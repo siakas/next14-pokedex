@@ -10,21 +10,20 @@ export default function Home() {
 
   return (
     <Layout>
+      <PageNavigation />
+
       {isPokemonListLoading ? (
-        <div>
+        <div className="flex h-screen justify-center pt-40">
           <Loader className="animate-spin" />
         </div>
       ) : (
-        <>
-          <PageNavigation />
-          <ul>
-            {pokemonList?.results?.map((pokemon) => (
-              <li key={pokemon.id} className="mb-4">
-                <Card pokemonId={pokemon.id} />
-              </li>
-            ))}
-          </ul>
-        </>
+        <ul>
+          {pokemonList?.results?.map((pokemon) => (
+            <li key={pokemon.id} className="mb-4">
+              <Card pokemonId={pokemon.id} />
+            </li>
+          ))}
+        </ul>
       )}
     </Layout>
   )
