@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useGetPokemonList } from '@/hooks/useGetPokemonList'
@@ -10,7 +11,10 @@ export const PageNavigation = () => {
     <div className="my-6 flex justify-between">
       <Button
         onClick={handlePrevButton}
-        className="bg-blue-500 pr-6 hover:bg-blue-700"
+        className={clsx(
+          'bg-blue-500 pr-6 hover:bg-blue-700',
+          offset === 0 && 'invisible opacity-0',
+        )}
         disabled={offset === 0}
       >
         <ChevronLeft className="mr-2 size-5" />
