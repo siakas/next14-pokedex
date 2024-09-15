@@ -20,10 +20,10 @@ export const Card = ({ pokemonId }: Props) => {
     <div className="w-full max-w-sm rounded-md border p-4 shadow">
       {isPokemonLoading || isSpeciesLoading ? (
         <div className="animate-pulse space-y-1">
-          <Skeleton className="h-6" />
-          <Skeleton className="h-6" />
-          <Skeleton className="size-[90px]" />
-          <Skeleton className="h-6" />
+          <Skeleton className="h-6 bg-slate-800" />
+          <Skeleton className="h-6 bg-slate-800" />
+          <Skeleton className="size-[90px] bg-slate-800" />
+          <Skeleton className="h-6 bg-slate-800" />
         </div>
       ) : (
         <>
