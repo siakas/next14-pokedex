@@ -5,11 +5,13 @@ import type { Species } from '@/types/species'
 /**
  * 任意の件数ごとのポケモン一覧を取得
  * @param offset 取得開始位置
+ * @param limit 取得件数
  * @returns ポケモン一覧
  */
-export const getPokemonList = async (offset: number = 0) => {
-  const limit = 30 // 表示件数
-
+export const getPokemonList = async (
+  offset: number = 0,
+  limit: number = 30,
+) => {
   try {
     const res = await pokeApi.get<PokemonList>(
       `/pokemon?limit=${limit}&offset=${offset}`,

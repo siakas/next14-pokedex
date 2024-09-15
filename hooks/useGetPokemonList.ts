@@ -3,11 +3,11 @@ import { usePokemonListStore } from '@/store/pokemonListStore'
 import { getPokemonList } from '@/utils/pokemon'
 
 export const useGetPokemonList = () => {
-  const { offset, setOffset } = usePokemonListStore((state) => ({
+  const { offset, limit, setOffset } = usePokemonListStore((state) => ({
     offset: state.offset,
+    limit: state.limit,
     setOffset: state.actions.setOffset,
   }))
-  const limit = 30 // 表示件数（TODO: Zustand で共通化したい）
 
   /**
    * 前のページへ移動
@@ -26,8 +26,8 @@ export const useGetPokemonList = () => {
 
   // ポケモン一覧をオフセットごとに取得する useQuery
   const { data, isLoading } = useQuery({
-    queryKey: ['pokemonList', offset],
-    queryFn: () => getPokemonList(offset),
+    queryKey: ['pokemonList', offset, limit],
+    queryFn: () => getPokemonList(offset, limit),
   })
 
   return {
@@ -36,5 +36,6 @@ export const useGetPokemonList = () => {
     handlePrevButton,
     handleNextButton,
     offset,
+    limit,
   }
 }
