@@ -6,7 +6,7 @@ export const useGetPokemonList = () => {
   const { offset, limit, setOffset } = usePokemonListStore((state) => ({
     offset: state.offset,
     limit: state.limit,
-    setOffset: state.actions.setOffset,
+    setOffset: state.setOffset,
   }))
 
   /**
