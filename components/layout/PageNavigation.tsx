@@ -7,23 +7,19 @@ export const PageNavigation = () => {
   const { handlePrevButton, handleNextButton, offset, limit } =
     useGetPokemonList()
 
+  const commonButtonStyle =
+    'bg-blue-500 text-white hover:bg-blue-700 dark:bg-neutral-800 dark:hover:bg-neutral-700'
+
   return (
-    <div className="my-6 flex justify-between">
+    <div className="flex gap-3">
       <Button
         onClick={handlePrevButton}
-        className={clsx(
-          'bg-blue-500 pr-6 hover:bg-blue-700',
-          offset === 0 && 'invisible opacity-0',
-        )}
-        disabled={offset === 0}
+        className={clsx(commonButtonStyle, offset === 0 && 'hidden')}
       >
         <ChevronLeft className="mr-2 size-5" />
         前の{limit}件
       </Button>
-      <Button
-        onClick={handleNextButton}
-        className="bg-blue-500 pl-6 hover:bg-blue-700"
-      >
+      <Button onClick={handleNextButton} className={clsx(commonButtonStyle)}>
         次の{limit}件
         <ChevronRight className="ml-2 size-5" />
       </Button>

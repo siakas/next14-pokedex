@@ -1,5 +1,7 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import clsx from 'clsx'
-import { Skeleton } from '@/components/ui/skeleton'
+import { SkeletonCard } from '@/components/feature/pokemon-index/SkeletonCard'
 import { useGetPokemonDetail } from '@/hooks/useGetPokemonDetail'
 import { typesMapping } from '@/utils/translator'
 
@@ -8,41 +10,35 @@ type Props = {
 }
 
 export const Card = ({ pokemonId }: Props) => {
-  const {
-    pokemon,
-    species,
-    pokemonJaName,
-    isPokemonLoading,
-    isSpeciesLoading,
-  } = useGetPokemonDetail(pokemonId)
+  const { pokemon, pokemonJaName, isPokemonLoading, isSpeciesLoading } =
+    useGetPokemonDetail(pokemonId)
 
   return (
-    <div className="w-full max-w-sm rounded-md border p-4 shadow">
+    <div className="text-center">
       {isPokemonLoading || isSpeciesLoading ? (
-        <div className="animate-pulse space-y-1">
-          <Skeleton className="h-6 bg-slate-800" />
-          <Skeleton className="h-6 bg-slate-800" />
-          <Skeleton className="size-[90px] bg-slate-800" />
-          <Skeleton className="h-6 bg-slate-800" />
-        </div>
+        <SkeletonCard />
       ) : (
-        <>
-          <p>ID：{pokemonId}</p>
-          <p>名前：{pokemonJaName}</p>
-          <img
+        <Link
+          href={`/pokemon/${pokemon?.id}`}
+          className="relative flex aspect-square w-full flex-col items-center justify-center rounded-lg bg-gray-200 text-inherit transition-colors dark:bg-gray-700 dark:hover:bg-gray-600"
+        >
+          <h1 className="absolute right-1 top-1 text-xs font-semibold text-gray-400">
+            #{pokemon?.id.toString().padStart(4, '0')}
+          </h1>
+          <Image
             src={pokemon?.sprites.other['official-artwork'].front_default ?? ''}
-            alt=""
-            loading="lazy"
-            className="size-[90px]"
             width={90}
             height={90}
+            alt=""
+            loading="lazy"
           />
+          <p className="mt-3 text-sm font-bold">{pokemonJaName}</p>
           <div className="mt-2 flex flex-col gap-1 sm:flex-row">
             {pokemon?.types.map((type) => (
               <span
                 key={type.slot}
                 className={clsx(
-                  'text-shadow mb-1 block w-[4.6rem] rounded py-1 text-center text-xs font-semibold leading-normal text-white',
+                  'text-shadow mb-1 block w-[4.6rem] rounded py-1 text-center text-xs font-bold leading-normal text-white',
                   `bg-${type.type.name}`,
                 )}
               >
@@ -50,7 +46,7 @@ export const Card = ({ pokemonId }: Props) => {
               </span>
             ))}
           </div>
-        </>
+        </Link>
       )}
     </div>
   )

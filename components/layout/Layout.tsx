@@ -28,7 +28,7 @@ const Layout = ({ children }: Props) => {
       )}
     >
       <PageBackground />
-      <main className="relative z-10 m-auto mb-16 max-w-7xl px-8 py-5 text-white sm:px-16 sm:py-10">
+      <main className="relative z-10 m-auto mb-16 max-w-7xl px-8 py-5 sm:px-16 sm:py-10">
         {children}
       </main>
     </div>
