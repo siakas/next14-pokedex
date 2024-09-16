@@ -19,18 +19,20 @@ export const useGetPokemonDetail = (pokemonId: number) => {
     queryFn: () => getSpeciesByPokemonId(pokemonId),
   })
 
-  // ポケモンの日本語名を取得
+  /** すべてのデータが取得されたかどうか */
+  const isLoading = isPokemonLoading || isSpeciesLoading
+
+  /** ポケモンの日本語名 */
   const pokemonJaName = species ? getJaNameBySpecies(species) : undefined
 
-  // ポケモンの日本語分類名を取得
+  /** ポケモンの日本語分類名 */
   const pokemonJaGenus = species ? getJaGenusBySpecies(species) : undefined
 
   return {
     pokemon,
-    isPokemonLoading,
     species,
-    isSpeciesLoading,
     pokemonJaName,
     pokemonJaGenus,
+    isLoading,
   }
 }
