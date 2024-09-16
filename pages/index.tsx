@@ -1,6 +1,6 @@
 import { Loader } from 'lucide-react'
-import { Card } from '@/components/feature/pokemon-index/Card'
-import { PageNavigation } from '@/components/feature/pokemon-index/PageNavigation'
+import { PokemonList } from '@/components/feature/pokemon-index/PokemonList'
+import { Controller } from '@/components/layout/Controller'
 import Layout from '@/components/layout/Layout'
 import { useGetPokemonList } from '@/hooks/useGetPokemonList'
 
@@ -10,20 +10,14 @@ export default function Home() {
 
   return (
     <Layout>
-      <PageNavigation />
+      <Controller />
 
       {isPokemonListLoading ? (
         <div className="flex h-screen justify-center pt-40">
           <Loader className="animate-spin" />
         </div>
       ) : (
-        <ul>
-          {pokemonList?.results?.map((pokemon) => (
-            <li key={pokemon.id} className="mb-4">
-              <Card pokemonId={pokemon.id} />
-            </li>
-          ))}
-        </ul>
+        <>{pokemonList && <PokemonList pokemonList={pokemonList.results} />}</>
       )}
     </Layout>
   )
