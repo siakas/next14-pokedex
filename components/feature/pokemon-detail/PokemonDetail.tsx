@@ -1,5 +1,7 @@
+import { DamageData } from '@/components/feature/pokemon-detail/damage-data/DamageData'
 import { DexNumber } from '@/components/feature/pokemon-detail/DexNumber'
 import { MainInfo } from '@/components/feature/pokemon-detail/main-info/MainInfo'
+import { StatData } from '@/components/feature/pokemon-detail/stat-data/StatData'
 import type { Pokemon } from '@/types/pokemon'
 import type { Species } from '@/types/species'
 
@@ -32,6 +34,14 @@ export const PokemonDetail = ({
           pokemonJaName={pokemonJaName}
           pokemonJaGenus={pokemonJaGenus}
         />
+      </div>
+
+      <div className="flex flex-col items-center justify-center gap-x-6 gap-y-4 lg:flex-row lg:items-start">
+        {/* 種族値 */}
+        <StatData pokemon={pokemon} />
+
+        {/* タイプ相性による弱点 */}
+        <DamageData />
       </div>
     </div>
   )
