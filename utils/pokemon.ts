@@ -1,6 +1,5 @@
 import { pokeApi } from '@/pages/api/pokeApi'
-import type { Pokemon, PokemonList } from '@/types/pokemon'
-import type { Species } from '@/types/species'
+import type { Pokemon, PokemonList, Species, Type } from '@/types'
 
 /**
  * 任意の件数ごとのポケモン一覧を取得
@@ -61,6 +60,18 @@ export const getSpeciesByPokemonId = async (id: number) => {
   } catch (error) {
     // データ取得がエラーの場合は null を返す
     return null
+  }
+}
+
+/**
+ * ポケモンのタイプ名からタイプ詳細情報を取得
+ */
+export const getTypeDetailByTypeName = async (type: string) => {
+  try {
+    const res = await pokeApi.get<Type>(`/type/${type}`)
+    return res.data
+  } catch (error) {
+    throw error
   }
 }
 

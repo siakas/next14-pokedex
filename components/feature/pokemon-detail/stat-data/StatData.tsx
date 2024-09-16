@@ -53,7 +53,7 @@ export const StatData = ({ pokemon }: Props) => {
                     aria-label={stat.stat.name}
                     value={stat.base_stat}
                     indicatorClassName={statRanker(stat.base_stat)}
-                    max={180}
+                    max={200}
                   />
                 </TableCell>
               </TableRow>

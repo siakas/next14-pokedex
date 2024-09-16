@@ -41,7 +41,7 @@ export const PokemonDetail = ({
         <StatData pokemon={pokemon} />
 
         {/* タイプ相性による弱点 */}
-        <DamageData />
+        <DamageData pokemon={pokemon} />
       </div>
     </div>
   )
