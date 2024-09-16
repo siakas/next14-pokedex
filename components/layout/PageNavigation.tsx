@@ -14,11 +14,7 @@ export const PageNavigation = () => {
     <div className="flex gap-3">
       <Button
         onClick={handlePrevButton}
-        className={clsx(
-          commonButtonStyle,
-          offset === 0 && 'invisible opacity-0',
-        )}
-        disabled={offset === 0}
+        className={clsx(commonButtonStyle, offset === 0 && 'hidden')}
       >
         <ChevronLeft className="mr-2 size-5" />
         前の{limit}件
