@@ -22,7 +22,7 @@ const Progress = React.forwardRef<
   >
     <ProgressPrimitive.Indicator
       className={clsx(
-        'size-full flex-1 transition-all',
+        'size-full flex-1 rounded-full transition-all',
         indicatorClassName || 'bg-primary',
       )}
       style={{
