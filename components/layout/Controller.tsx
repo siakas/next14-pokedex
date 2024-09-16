@@ -1,4 +1,4 @@
-import { PageNavigation } from '@/components/feature/pokemon-index/PageNavigation'
+import { PageNavigation } from '@/components/layout/PageNavigation'
 import { ToggleTheme } from '@/components/layout/ToggleTheme'
 
 export const Controller = () => {
