@@ -2,8 +2,10 @@ import { BasicData } from '@/components/feature/pokemon-detail/basic-data/BasicD
 import { DamageData } from '@/components/feature/pokemon-detail/damage-data/DamageData'
 import { DataCard } from '@/components/feature/pokemon-detail/DataCard'
 import { DexNumber } from '@/components/feature/pokemon-detail/DexNumber'
+import { HatchData } from '@/components/feature/pokemon-detail/hatch-data/HatchData'
 import { Heading } from '@/components/feature/pokemon-detail/Heading'
 import { MainInfo } from '@/components/feature/pokemon-detail/main-info/MainInfo'
+import { OtherLang } from '@/components/feature/pokemon-detail/other-lang/OtherLang'
 import { StatData } from '@/components/feature/pokemon-detail/stat-data/StatData'
 import type { Pokemon } from '@/types/pokemon'
 import type { Species } from '@/types/species'
@@ -38,15 +40,26 @@ export const PokemonDetail = ({
           pokemonJaGenus={pokemonJaGenus}
         />
 
-        <div className="flex size-full flex-col xl:flex-row xl:gap-x-6">
-          {/* 基礎データ */}
-          <BasicData pokemon={pokemon} species={species} />
+        <div className="flex w-full flex-col gap-10">
+          <div className="flex size-full flex-col xl:flex-row xl:gap-x-6">
+            {/* 基礎データ */}
+            <BasicData pokemon={pokemon} species={species} />
 
-          <div className="w-full lg:w-2/6">
-            <Heading>捕獲成功率</Heading>
-            <DataCard>
-              <div></div>
-            </DataCard>
+            {/* 捕獲成功率 */}
+            <div className="w-full lg:w-2/6">
+              <Heading>捕獲成功率</Heading>
+              <DataCard>
+                <div></div>
+              </DataCard>
+            </div>
+          </div>
+
+          <div className="flex size-full flex-col xl:flex-row xl:gap-x-6">
+            {/* タマゴと性別 */}
+            <HatchData species={species} />
+
+            {/* 言語別の名称 */}
+            <OtherLang species={species} />
           </div>
         </div>
       </div>

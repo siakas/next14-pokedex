@@ -43,7 +43,7 @@ export const MainInfo = ({
       </div>
 
       <div className="rounded-lg dark:bg-transparent">
-        <div className="relative flex h-[30rem] w-64 flex-col overflow-hidden rounded-xl border-4 border-gray-400 bg-transparent py-4 text-foreground sm:h-[37rem] sm:w-96">
+        <div className="relative flex h-[30rem] w-64 flex-col overflow-hidden rounded-xl border-4 border-gray-400 bg-transparent py-4 text-foreground sm:h-[38rem] sm:w-96">
           {/* 名前 */}
           <MainInfoName genus={pokemonJaGenus} name={pokemonJaName} />
 
