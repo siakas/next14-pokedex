@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 import clsx from 'clsx'
 import { SkeletonCard } from '@/components/feature/pokemon-index/SkeletonCard'
 import { useGetPokemonDetail } from '@/hooks/useGetPokemonDetail'
@@ -10,6 +11,7 @@ type Props = {
 }
 
 export const Card = ({ pokemonId }: Props) => {
+  const [imageLoaded, setImageLoaded] = useState(false)
   const { pokemon, pokemonJaName, isLoading } = useGetPokemonDetail(pokemonId)
 
   return (
@@ -30,6 +32,11 @@ export const Card = ({ pokemonId }: Props) => {
             height={90}
             alt=""
             loading="lazy"
+            onLoadingComplete={() => setImageLoaded(true)}
+            className={clsx(
+              'transition-opacity duration-150',
+              imageLoaded ? 'opacity-100' : 'opacity-0',
+            )}
           />
           <p className="mt-3 text-sm font-bold">{pokemonJaName}</p>
           <div className="mt-2 flex flex-col gap-1 sm:flex-row">
