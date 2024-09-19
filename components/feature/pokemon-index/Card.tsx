@@ -10,12 +10,11 @@ type Props = {
 }
 
 export const Card = ({ pokemonId }: Props) => {
-  const { pokemon, pokemonJaName, isPokemonLoading, isSpeciesLoading } =
-    useGetPokemonDetail(pokemonId)
+  const { pokemon, pokemonJaName, isLoading } = useGetPokemonDetail(pokemonId)
 
   return (
     <div className="text-center">
-      {isPokemonLoading || isSpeciesLoading ? (
+      {isLoading ? (
         <SkeletonCard />
       ) : (
         <Link
