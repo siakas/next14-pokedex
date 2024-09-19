@@ -12,6 +12,7 @@ export const CaptureRate = ({ pokemon, species }: Props) => {
   return (
     <div className="w-full lg:w-2/6">
       <Heading>捕獲成功率</Heading>
+      {/* <p>ポケモンの体力が最大の状態でポケモンボールを使用して捕獲する確率</p> */}
       <DataCard>
         <CaptureRateProgress
           captureRate={species.capture_rate}
