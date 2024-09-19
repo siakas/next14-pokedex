@@ -42,13 +42,9 @@ export const StatData = ({ pokemon }: Props) => {
           <TableBody>
             {pokemon.stats.map((stat, index) => (
               <TableRow key={index}>
-                <TableCell className="py-3">
-                  {statsMapping[stat.stat.name]}
-                </TableCell>
-                <TableCell className="py-3 text-right">
-                  {stat.base_stat}
-                </TableCell>
-                <TableCell className="py-3">
+                <TableCell>{statsMapping[stat.stat.name]}</TableCell>
+                <TableCell className="text-right">{stat.base_stat}</TableCell>
+                <TableCell>
                   <Progress
                     aria-label={stat.stat.name}
                     value={stat.base_stat}

@@ -10,8 +10,8 @@ type Props = {
 export const DamageDataList = ({ weaknesses }: Props) => {
   const renderRow = (multiplier: number) => (
     <TableRow className="even:bg-black-900">
-      <TableCell className="w-20 py-3 font-bold">{`${multiplier}x`}</TableCell>
-      <TableCell className="py-3">
+      <TableCell className="w-20 font-bold">{`${multiplier}x`}</TableCell>
+      <TableCell>
         <div className="flex flex-wrap gap-1">
           {Object.entries(weaknesses).map(
             ([key, value]) =>
