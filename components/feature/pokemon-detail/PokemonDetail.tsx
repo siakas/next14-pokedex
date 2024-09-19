@@ -1,9 +1,8 @@
 import { BasicData } from '@/components/feature/pokemon-detail/basic-data/BasicData'
+import { CaptureRate } from '@/components/feature/pokemon-detail/capture-rate/CaptureRate'
 import { DamageData } from '@/components/feature/pokemon-detail/damage-data/DamageData'
-import { DataCard } from '@/components/feature/pokemon-detail/DataCard'
 import { DexNumber } from '@/components/feature/pokemon-detail/DexNumber'
 import { HatchData } from '@/components/feature/pokemon-detail/hatch-data/HatchData'
-import { Heading } from '@/components/feature/pokemon-detail/Heading'
 import { MainInfo } from '@/components/feature/pokemon-detail/main-info/MainInfo'
 import { OtherLang } from '@/components/feature/pokemon-detail/other-lang/OtherLang'
 import { StatData } from '@/components/feature/pokemon-detail/stat-data/StatData'
@@ -46,12 +45,7 @@ export const PokemonDetail = ({
             <BasicData pokemon={pokemon} species={species} />
 
             {/* 捕獲成功率 */}
-            <div className="w-full lg:w-2/6">
-              <Heading>捕獲成功率</Heading>
-              <DataCard>
-                <div></div>
-              </DataCard>
-            </div>
+            <CaptureRate pokemon={pokemon} species={species} />
           </div>
 
           <div className="flex size-full flex-col xl:flex-row xl:gap-x-6">
