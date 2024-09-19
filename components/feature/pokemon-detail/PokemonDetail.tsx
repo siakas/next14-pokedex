@@ -1,9 +1,8 @@
 import { BasicData } from '@/components/feature/pokemon-detail/basic-data/BasicData'
+import { CaptureRate } from '@/components/feature/pokemon-detail/capture-rate/CaptureRate'
 import { DamageData } from '@/components/feature/pokemon-detail/damage-data/DamageData'
-import { DataCard } from '@/components/feature/pokemon-detail/DataCard'
 import { DexNumber } from '@/components/feature/pokemon-detail/DexNumber'
 import { HatchData } from '@/components/feature/pokemon-detail/hatch-data/HatchData'
-import { Heading } from '@/components/feature/pokemon-detail/Heading'
 import { MainInfo } from '@/components/feature/pokemon-detail/main-info/MainInfo'
 import { OtherLang } from '@/components/feature/pokemon-detail/other-lang/OtherLang'
 import { StatData } from '@/components/feature/pokemon-detail/stat-data/StatData'
@@ -46,56 +45,7 @@ export const PokemonDetail = ({
             <BasicData pokemon={pokemon} species={species} />
 
             {/* 捕獲成功率 */}
-            <div className="w-full lg:w-2/6">
-              <Heading>捕獲成功率</Heading>
-              <DataCard>
-                <div className="flex h-full items-center justify-center">
-                  <div className="relative size-[163px]">
-                    <svg
-                      className="absolute left-0 top-0 size-full -rotate-90"
-                      viewBox="0 0 100 100"
-                    >
-                      <circle
-                        cx="50"
-                        cy="50"
-                        r="40"
-                        fill="transparent"
-                        stroke="#343337"
-                        strokeWidth="6"
-                      />
-                      <circle
-                        cx="50"
-                        cy="50"
-                        r="40"
-                        fill="transparent"
-                        stroke="url(#progress-gradient)"
-                        strokeWidth="6"
-                        strokeDasharray="251.2"
-                        strokeDashoffset={251.2 * (1 - 0.75)}
-                      />
-                      <defs>
-                        <linearGradient
-                          id="progress-gradient"
-                          x1="0%"
-                          y1="0%"
-                          x2="100%"
-                          y2="0%"
-                        >
-                          <stop offset="0%" stopColor="#6366f1" />
-                          <stop offset="100%" stopColor="#3b82f6" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                    <div className="absolute left-0 top-0 grid size-full place-items-center text-3xl font-bold">
-                      <span>
-                        55.9
-                        <span className="text-xl">%</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </DataCard>
-            </div>
+            <CaptureRate pokemon={pokemon} species={species} />
           </div>
 
           <div className="flex size-full flex-col xl:flex-row xl:gap-x-6">
