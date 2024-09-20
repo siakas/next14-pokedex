@@ -1,22 +1,22 @@
-import { Inter, Noto_Sans_JP } from 'next/font/google'
-import { PageBackground } from '@/components/layout/PageBackground'
-import { cn } from '@/lib/utils'
+import { Inter, Noto_Sans_JP } from "next/font/google";
+import { PageBackground } from "@/components/layout/PageBackground";
+import { cn } from "@/lib/utils";
 
 const fontInter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-})
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 const fontNotoSansJp = Noto_Sans_JP({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-noto-sans-jp',
-})
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-noto-sans-jp",
+});
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 const Layout = ({ children }: Props) => {
   return (
@@ -24,7 +24,7 @@ const Layout = ({ children }: Props) => {
       className={cn(
         fontInter.variable,
         fontNotoSansJp.variable,
-        'antialiased font-body',
+        "antialiased font-body",
       )}
     >
       <PageBackground />
@@ -32,7 +32,7 @@ const Layout = ({ children }: Props) => {
         {children}
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

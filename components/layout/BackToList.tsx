@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export const BackToList = () => {
   return (
@@ -9,5 +9,5 @@ export const BackToList = () => {
     >
       <Link href="/">一覧へ戻る</Link>
     </Button>
-  )
-}
+  );
+};

@@ -1,11 +1,11 @@
-import * as React from 'react'
-import * as ProgressPrimitive from '@radix-ui/react-progress'
-import clsx from 'clsx'
-import { cn } from '@/lib/utils'
+import * as React from "react";
+import * as ProgressPrimitive from "@radix-ui/react-progress";
+import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 interface ProgressProps
   extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root> {
-  indicatorClassName?: string
+  indicatorClassName?: string;
 }
 
 const Progress = React.forwardRef<
@@ -15,15 +15,15 @@ const Progress = React.forwardRef<
   <ProgressPrimitive.Root
     ref={ref}
     className={cn(
-      'relative h-5 w-full overflow-hidden rounded-lg bg-secondary',
+      "relative h-5 w-full overflow-hidden rounded-lg bg-secondary",
       className,
     )}
     {...props}
   >
     <ProgressPrimitive.Indicator
       className={clsx(
-        'size-full flex-1 rounded-lg transition-all',
-        indicatorClassName || 'bg-primary',
+        "size-full flex-1 rounded-lg transition-all",
+        indicatorClassName || "bg-primary",
       )}
       style={{
         transform: `translateX(-${
@@ -32,7 +32,7 @@ const Progress = React.forwardRef<
       }}
     />
   </ProgressPrimitive.Root>
-))
-Progress.displayName = ProgressPrimitive.Root.displayName
+));
+Progress.displayName = ProgressPrimitive.Root.displayName;
 
-export { Progress }
+export { Progress };

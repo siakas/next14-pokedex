@@ -1,16 +1,16 @@
-import { create } from 'zustand'
-import { createJSONStorage, devtools, persist } from 'zustand/middleware'
+import { create } from "zustand";
+import { createJSONStorage, devtools, persist } from "zustand/middleware";
 
 /** ポケモン一覧取得に関する設定を管理するストア */
 type usePokemonListStore = {
   /** 一覧の取得位置 */
-  offset: number
+  offset: number;
   /** 一度に取得する件数 */
-  limit: number
+  limit: number;
 
-  setOffset: (offset: number) => void
-  setLimit: (limit: number) => void
-}
+  setOffset: (offset: number) => void;
+  setLimit: (limit: number) => void;
+};
 
 export const usePokemonListStore = create<usePokemonListStore>()(
   devtools(
@@ -22,9 +22,9 @@ export const usePokemonListStore = create<usePokemonListStore>()(
         setLimit: (limit) => set({ limit }),
       }),
       {
-        name: 'pokemonListStore',
+        name: "pokemonListStore",
         storage: createJSONStorage(() => sessionStorage),
       },
     ),
   ),
-)
+);

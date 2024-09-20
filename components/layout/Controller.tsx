@@ -1,11 +1,11 @@
-import { BackToList } from '@/components/layout/BackToList'
-import { PageNavigation } from '@/components/layout/PageNavigation'
-import { ToggleTheme } from '@/components/layout/ToggleTheme'
+import { BackToList } from "@/components/layout/BackToList";
+import { PageNavigation } from "@/components/layout/PageNavigation";
+import { ToggleTheme } from "@/components/layout/ToggleTheme";
 
 type Props = {
   /** 一覧表示画面であるかどうか */
-  isShowList?: boolean
-}
+  isShowList?: boolean;
+};
 
 export const Controller = ({ isShowList = true }: Props) => {
   return (
@@ -16,5 +16,5 @@ export const Controller = ({ isShowList = true }: Props) => {
       {/* ダークモード切替 */}
       <ToggleTheme />
     </div>
-  )
-}
+  );
+};

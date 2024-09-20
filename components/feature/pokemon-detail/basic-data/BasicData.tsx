@@ -1,21 +1,21 @@
-import { DataCard } from '@/components/feature/pokemon-detail/DataCard'
-import { Heading } from '@/components/feature/pokemon-detail/Heading'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
-import { useGetAbilities } from '@/hooks/useGetAbilities'
-import type { Pokemon, Species } from '@/types'
-import { growthRateMapping, statsMapping } from '@/utils/translator'
+import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
+import { Heading } from "@/components/feature/pokemon-detail/Heading";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { useGetAbilities } from "@/hooks/useGetAbilities";
+import type { Pokemon, Species } from "@/types";
+import { growthRateMapping, statsMapping } from "@/utils/translator";
 
 type Props = {
-  pokemon: Pokemon
-  species: Species
-}
+  pokemon: Pokemon;
+  species: Species;
+};
 
 export const BasicData = ({ pokemon, species }: Props) => {
-  const { data, isLoading } = useGetAbilities(pokemon.abilities)
+  const { data, isLoading } = useGetAbilities(pokemon.abilities);
 
   // 倒したときに得られる努力値を取得
-  const effortYield = pokemon.stats.find((stat) => stat.effort !== 0)
+  const effortYield = pokemon.stats.find((stat) => stat.effort !== 0);
 
   return (
     <div className="w-full lg:w-4/6">
@@ -69,5 +69,5 @@ export const BasicData = ({ pokemon, species }: Props) => {
         )}
       </DataCard>
     </div>
-  )
-}
+  );
+};

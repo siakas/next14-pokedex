@@ -1,11 +1,11 @@
-import clsx from 'clsx'
-import { Chip } from '@/components/feature/pokemon-detail/main-info/Chip'
-import type { PokemonType } from '@/types'
-import { typesMapping } from '@/utils/translator'
+import clsx from "clsx";
+import { Chip } from "@/components/feature/pokemon-detail/main-info/Chip";
+import type { PokemonType } from "@/types";
+import { typesMapping } from "@/utils/translator";
 
 type Props = {
-  types: PokemonType[]
-}
+  types: PokemonType[];
+};
 
 export const MainInfoTypes = ({ types }: Props) => {
   return (
@@ -15,7 +15,7 @@ export const MainInfoTypes = ({ types }: Props) => {
         {types.map((type) => (
           <span
             className={clsx(
-              'text-shadow mb-1 block w-[4.2rem] rounded py-1 text-center text-xs font-semibold leading-normal text-white',
+              "text-shadow mb-1 block w-[4.2rem] rounded py-1 text-center text-xs font-semibold leading-normal text-white",
               `bg-${type.type.name}`,
             )}
             key={type.slot}
@@ -25,5 +25,5 @@ export const MainInfoTypes = ({ types }: Props) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,12 +1,12 @@
-import { CaptureRateProgress } from '@/components/feature/pokemon-detail/capture-rate/CaptureRateProgress'
-import { DataCard } from '@/components/feature/pokemon-detail/DataCard'
-import { Heading } from '@/components/feature/pokemon-detail/Heading'
-import type { Pokemon, Species } from '@/types'
+import { CaptureRateProgress } from "@/components/feature/pokemon-detail/capture-rate/CaptureRateProgress";
+import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
+import { Heading } from "@/components/feature/pokemon-detail/Heading";
+import type { Pokemon, Species } from "@/types";
 
 type Props = {
-  pokemon: Pokemon
-  species: Species
-}
+  pokemon: Pokemon;
+  species: Species;
+};
 
 export const CaptureRate = ({ pokemon, species }: Props) => {
   return (
@@ -20,5 +20,5 @@ export const CaptureRate = ({ pokemon, species }: Props) => {
         />
       </DataCard>
     </div>
-  )
-}
+  );
+};

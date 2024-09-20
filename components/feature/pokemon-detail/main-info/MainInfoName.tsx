@@ -1,7 +1,7 @@
 type Props = {
-  genus: string
-  name: string
-}
+  genus: string;
+  name: string;
+};
 
 export const MainInfoName = ({ genus, name }: Props) => {
   return (
@@ -10,5 +10,5 @@ export const MainInfoName = ({ genus, name }: Props) => {
       <div className="my-2 h-[3px] w-3/5 shrink-0 rounded-md bg-gray-400"></div>
       <h4 className="font-bold">{genus}</h4>
     </div>
-  )
-}
+  );
+};

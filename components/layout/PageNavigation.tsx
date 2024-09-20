@@ -1,20 +1,20 @@
-import clsx from 'clsx'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { useGetPokemonList } from '@/hooks/useGetPokemonList'
+import clsx from "clsx";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useGetPokemonList } from "@/hooks/useGetPokemonList";
 
 export const PageNavigation = () => {
   const { handlePrevButton, handleNextButton, offset, limit } =
-    useGetPokemonList()
+    useGetPokemonList();
 
   const commonButtonStyle =
-    'bg-blue-500 text-white hover:bg-blue-700 dark:bg-neutral-800 dark:hover:bg-neutral-700'
+    "bg-blue-500 text-white hover:bg-blue-700 dark:bg-neutral-800 dark:hover:bg-neutral-700";
 
   return (
     <div className="flex gap-3">
       <Button
         onClick={handlePrevButton}
-        className={clsx(commonButtonStyle, offset === 0 && 'hidden')}
+        className={clsx(commonButtonStyle, offset === 0 && "hidden")}
       >
         <ChevronLeft className="mr-2 size-5" />
         前の{limit}件
@@ -24,5 +24,5 @@ export const PageNavigation = () => {
         <ChevronRight className="ml-2 size-5" />
       </Button>
     </div>
-  )
-}
+  );
+};
