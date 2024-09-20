@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { useState } from "react";
-import clsx from "clsx";
 import { DividerVertical } from "@/components/feature/pokemon-detail/main-info/DividerVertical";
 import { MainInfoHeight } from "@/components/feature/pokemon-detail/main-info/MainInfoHeight";
 import { MainInfoName } from "@/components/feature/pokemon-detail/main-info/MainInfoName";
 import { MainInfoTypes } from "@/components/feature/pokemon-detail/main-info/MainInfoTypes";
 import { MainInfoWeight } from "@/components/feature/pokemon-detail/main-info/MainInfoWeight";
+import { cn } from "@/lib/utils";
 import type { Pokemon, Species } from "@/types";
 
 type Props = {
@@ -33,7 +33,7 @@ export const MainInfo = ({
           width={440}
           height={440}
           loading="lazy"
-          className={clsx(
+          className={cn(
             "absolute z-10 w-[280px] transition-opacity duration-300 sm:w-[440px]",
             imageLoaded ? "opacity-100" : "opacity-0",
           )}

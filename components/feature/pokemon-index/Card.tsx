@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import clsx from "clsx";
 import { SkeletonCard } from "@/components/feature/pokemon-index/SkeletonCard";
 import { useGetPokemonDetail } from "@/hooks/useGetPokemonDetail";
+import { cn } from "@/lib/utils";
 import { typesMapping } from "@/utils/translator";
 
 type Props = {
@@ -33,7 +33,7 @@ export const Card = ({ pokemonId }: Props) => {
             alt=""
             loading="lazy"
             onLoadingComplete={() => setImageLoaded(true)}
-            className={clsx(
+            className={cn(
               "transition-opacity duration-150",
               imageLoaded ? "opacity-100" : "opacity-0",
             )}
@@ -43,7 +43,7 @@ export const Card = ({ pokemonId }: Props) => {
             {pokemon?.types.map((type) => (
               <span
                 key={type.slot}
-                className={clsx(
+                className={cn(
                   "text-shadow mb-1 block w-[4.6rem] rounded py-1 text-center text-xs font-bold leading-normal text-white",
                   `bg-${type.type.name}`,
                 )}

@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
-import clsx from "clsx";
 import { cn } from "@/lib/utils";
 
 interface ProgressProps
@@ -21,7 +20,7 @@ const Progress = React.forwardRef<
     {...props}
   >
     <ProgressPrimitive.Indicator
-      className={clsx(
+      className={cn(
         "size-full flex-1 rounded-lg transition-all",
         indicatorClassName || "bg-primary",
       )}

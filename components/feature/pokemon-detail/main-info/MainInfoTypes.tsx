@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { Chip } from "@/components/feature/pokemon-detail/main-info/Chip";
+import { cn } from "@/lib/utils";
 import type { PokemonType } from "@/types";
 import { typesMapping } from "@/utils/translator";
 
@@ -14,7 +14,7 @@ export const MainInfoTypes = ({ types }: Props) => {
       <div className="mb-1 flex flex-col gap-1 sm:flex-row">
         {types.map((type) => (
           <span
-            className={clsx(
+            className={cn(
               "text-shadow mb-1 block w-[4.2rem] rounded py-1 text-center text-xs font-semibold leading-normal text-white",
               `bg-${type.type.name}`,
             )}

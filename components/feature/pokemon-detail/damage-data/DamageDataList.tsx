@@ -1,5 +1,5 @@
-import clsx from "clsx";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import { typesMapping } from "@/utils/translator";
 import type { MultipliersObject } from "@/utils/weaknesses";
 
@@ -18,7 +18,7 @@ export const DamageDataList = ({ weaknesses }: Props) => {
               value === multiplier && (
                 <span
                   key={key}
-                  className={clsx(
+                  className={cn(
                     "text-shadow block w-[4.8rem] rounded py-1 text-center text-xs font-bold leading-normal text-white",
                     `bg-${key}`,
                   )}

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 type Props = {
   children: ReactNode;
@@ -8,7 +8,7 @@ type Props = {
 
 export const Heading = ({ children, className }: Props) => {
   return (
-    <h2 className={clsx("mb-2 pl-2 text-left text-2xl font-bold", className)}>
+    <h2 className={cn("mb-2 pl-2 text-left text-2xl font-bold", className)}>
       {children}
     </h2>
   );
