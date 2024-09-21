@@ -2,14 +2,10 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useGetPokemonList } from "@/hooks/useGetPokemonList";
 import { cn } from "@/lib/utils";
-import { usePokemonListStore } from "@/store/pokemonListStore";
 
 export const PageNavigation = () => {
-  const { handlePrevButton, handleNextButton } = useGetPokemonList();
-  const { currentPage, limit } = usePokemonListStore((state) => ({
-    currentPage: state.currentPage,
-    limit: state.limit,
-  }));
+  const { handlePrevButton, handleNextButton, offset, limit } =
+    useGetPokemonList();
 
   const commonButtonStyle =
     "bg-blue-500 text-white hover:bg-blue-700 dark:bg-neutral-800 dark:hover:bg-neutral-700";
@@ -18,7 +14,7 @@ export const PageNavigation = () => {
     <div className="flex gap-3">
       <Button
         onClick={handlePrevButton}
-        className={cn(commonButtonStyle, currentPage === 1 && "hidden")}
+        className={cn(commonButtonStyle, offset === 0 && "hidden")}
       >
         <ChevronLeft className="mr-2 size-5" />
         前の{limit}件
