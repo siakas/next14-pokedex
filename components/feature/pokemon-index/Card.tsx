@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { SkeletonCard } from "@/components/feature/pokemon-index/SkeletonCard";
+import { Spinner } from "@/components/feature/loading/Spinner";
 import { useGetPokemonDetail } from "@/hooks/useGetPokemonDetail";
 import { cn } from "@/lib/utils";
 import { typesMapping } from "@/utils/translator";
@@ -17,7 +17,9 @@ export const Card = ({ pokemonId }: Props) => {
   return (
     <div className="text-center">
       {isLoading ? (
-        <SkeletonCard />
+        <div className="relative grid aspect-square w-full place-items-center rounded-lg bg-gray-200 text-inherit dark:bg-gray-700">
+          <Spinner size="lg" />
+        </div>
       ) : (
         <Link
           href={`/pokemon/${pokemon?.id}`}
