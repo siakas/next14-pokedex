@@ -1,9 +1,13 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useCallback, useEffect } from "react";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { usePokemonListStore } from "@/store/pokemonListStore";
 import { getPokemonList } from "@/utils/pokemon";
 
+/**
+ * カスタムフック：ポケモンリストの取得と管理を行う
+ * URLのクエリパラメータとストアの状態を同期させ、ページネーションを制御する
+ */
 export const useGetPokemonList = () => {
   const router = useRouter();
   const { currentPage, limit, setCurrentPage } = usePokemonListStore(
@@ -14,6 +18,7 @@ export const useGetPokemonList = () => {
     }),
   );
 
+  // URL のクエリパラメータとストアの状態を同期
   useEffect(() => {
     const page = Number(router.query.page) || 1;
     if (page !== currentPage) {
@@ -21,32 +26,39 @@ export const useGetPokemonList = () => {
     }
   }, [router.query.page, currentPage, setCurrentPage]);
 
+  // 現在のページに基づいてオフセットを計算
   const offset = (currentPage - 1) * limit;
 
   /**
-   * 前のページへ移動
+   * ページ変更時の処理
+   * @param newPage 新しいページ番号
    */
-  const handlePrevButton = () => {
-    if (currentPage > 1) {
-      const newPage = currentPage - 1;
+  const handlePageChange = useCallback(
+    (newPage: number) => {
       setCurrentPage(newPage);
       router.push(`/?page=${newPage}`, undefined, { shallow: true });
-    }
-  };
+    },
+    [setCurrentPage, router],
+  );
 
-  /**
-   * 次のページへ移動
-   */
-  const handleNextButton = () => {
-    const newPage = currentPage + 1;
-    setCurrentPage(newPage);
-    router.push(`/?page=${newPage}`, undefined, { shallow: true });
-  };
+  /** 前のページへ移動 */
+  const handlePrevButton = useCallback(() => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  }, [currentPage, handlePageChange]);
+
+  /** 次のページへ移動 */
+  const handleNextButton = useCallback(() => {
+    handlePageChange(currentPage + 1);
+  }, [currentPage, handlePageChange]);
 
   // ポケモン一覧をオフセットごとに取得する useQuery
   const { data, isLoading } = useQuery({
     queryKey: ["pokemonList", offset, limit],
     queryFn: () => getPokemonList(offset, limit),
+    placeholderData: keepPreviousData, // 新しいデータ取得中も前のデータを表示
+    staleTime: 5 * 60 * 1000, // 5 分間はデータを fresh とみなす
   });
 
   return {
