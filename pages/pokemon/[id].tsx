@@ -12,7 +12,7 @@ const PokemonDetailPage = () => {
     useGetPokemonDetail(pokemonId);
 
   return (
-    <Layout>
+    <Layout title={pokemonJaName}>
       <Controller isShowList={false} />
 
       {!isLoading && pokemon && species && pokemonJaName && pokemonJaGenus && (
