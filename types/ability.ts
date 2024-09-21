@@ -1,45 +1,45 @@
 export type Ability = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  effect_changes: any[]
+  effect_changes: any[];
   effect_entries: {
-    effect: string
+    effect: string;
     language: {
-      name: string
-      url: string
-    }
-    short_effect: string
-  }[]
+      name: string;
+      url: string;
+    };
+    short_effect: string;
+  }[];
   flavor_text_entries: {
-    flavor_text: string
+    flavor_text: string;
     language: {
-      name: string
-      url: string
-    }
+      name: string;
+      url: string;
+    };
     version_group: {
-      name: string
-      url: string
-    }
-  }[]
+      name: string;
+      url: string;
+    };
+  }[];
   generation: {
-    name: string
-    url: string
-  }
-  id: number
-  is_main_series: boolean
-  name: string
+    name: string;
+    url: string;
+  };
+  id: number;
+  is_main_series: boolean;
+  name: string;
   names: {
     language: {
-      name: string
-      url: string
-    }
-    name: string
-  }[]
+      name: string;
+      url: string;
+    };
+    name: string;
+  }[];
   pokemon: {
-    is_hidden: boolean
+    is_hidden: boolean;
     pokemon: {
-      name: string
-      url: string
-    }
-    slot: number
-  }[]
-}
+      name: string;
+      url: string;
+    };
+    slot: number;
+  }[];
+};

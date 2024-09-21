@@ -1,6 +1,6 @@
 type Props = {
-  dexNumber: string
-}
+  dexNumber: string;
+};
 
 export const DexNumber = ({ dexNumber }: Props) => {
   return (
@@ -9,5 +9,5 @@ export const DexNumber = ({ dexNumber }: Props) => {
         {dexNumber}
       </h1>
     </div>
-  )
-}
+  );
+};

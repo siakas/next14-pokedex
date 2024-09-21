@@ -1,8 +1,8 @@
-import { Chip } from '@/components/feature/pokemon-detail/main-info/Chip'
+import { Chip } from "@/components/feature/pokemon-detail/main-info/Chip";
 
 type Props = {
-  height: number
-}
+  height: number;
+};
 
 export const MainInfoHeight = ({ height }: Props) => {
   return (
@@ -12,5 +12,5 @@ export const MainInfoHeight = ({ height }: Props) => {
         {(height * 0.1).toFixed(1)} <span className="text-sm">m</span>
       </p>
     </div>
-  )
-}
+  );
+};

@@ -1,7 +1,7 @@
-import { clamp } from 'lodash-es'
-import { DataCard } from '@/components/feature/pokemon-detail/DataCard'
-import { Heading } from '@/components/feature/pokemon-detail/Heading'
-import { Progress } from '@/components/ui/progress'
+import { clamp } from "lodash-es";
+import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
+import { Heading } from "@/components/feature/pokemon-detail/Heading";
+import { Progress } from "@/components/ui/progress";
 import {
   Table,
   TableBody,
@@ -9,20 +9,20 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from '@/components/ui/table'
-import type { Pokemon } from '@/types'
-import { statsMapping } from '@/utils/translator'
+} from "@/components/ui/table";
+import type { Pokemon } from "@/types";
+import { statsMapping } from "@/utils/translator";
 
 type Props = {
-  pokemon: Pokemon
-}
+  pokemon: Pokemon;
+};
 
 export const StatData = ({ pokemon }: Props) => {
   /** ステータス値ごとにプログレスバーのスタイルを変更 */
   const statRanker = (stat: number): string => {
-    const rank = clamp(Math.ceil(stat / 30), 1, 6)
-    return `stat-rank-${rank}`
-  }
+    const rank = clamp(Math.ceil(stat / 30), 1, 6);
+    return `stat-rank-${rank}`;
+  };
 
   return (
     <div className="w-full sm:w-full lg:w-4/6">
@@ -58,5 +58,5 @@ export const StatData = ({ pokemon }: Props) => {
         </Table>
       </DataCard>
     </div>
-  )
-}
+  );
+};

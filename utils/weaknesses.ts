@@ -1,32 +1,32 @@
-import { flow, fromPairs, reduce } from 'lodash-es'
-import type { PokemonType } from '@/types'
-import { getTypeDetailByTypeName } from '@/utils/pokemon'
+import { flow, fromPairs, reduce } from "lodash-es";
+import type { PokemonType } from "@/types";
+import { getTypeDetailByTypeName } from "@/utils/pokemon";
 
 /** すべてのポケモンタイプ */
 const allTypes = [
-  'normal',
-  'fire',
-  'water',
-  'electric',
-  'grass',
-  'ice',
-  'fighting',
-  'poison',
-  'ground',
-  'flying',
-  'psychic',
-  'bug',
-  'rock',
-  'ghost',
-  'dragon',
-  'dark',
-  'steel',
-  'fairy',
-] as const
+  "normal",
+  "fire",
+  "water",
+  "electric",
+  "grass",
+  "ice",
+  "fighting",
+  "poison",
+  "ground",
+  "flying",
+  "psychic",
+  "bug",
+  "rock",
+  "ghost",
+  "dragon",
+  "dark",
+  "steel",
+  "fairy",
+] as const;
 
 export type MultipliersObject = {
-  [K in (typeof allTypes)[number]]: number
-}
+  [K in (typeof allTypes)[number]]: number;
+};
 
 const applyDamageRelation = (
   multipliers: MultipliersObject,
@@ -40,8 +40,8 @@ const applyDamageRelation = (
       [name]: acc[name as keyof MultipliersObject] * multiplier,
     }),
     multipliers,
-  )
-}
+  );
+};
 
 export const getWeaknesses = async (
   types: PokemonType[],
@@ -49,11 +49,11 @@ export const getWeaknesses = async (
   try {
     const multipliers = fromPairs(
       allTypes.map((type) => [type, 1]),
-    ) as MultipliersObject
+    ) as MultipliersObject;
 
     const typeDetails = await Promise.all(
       types.map(({ type }) => getTypeDetailByTypeName(type.name)),
-    )
+    );
 
     return reduce(
       typeDetails,
@@ -73,14 +73,14 @@ export const getWeaknesses = async (
             ),
           (m: MultipliersObject) =>
             applyDamageRelation(m, typeData.damage_relations.no_damage_from, 0),
-        )
+        );
 
-        return applyDamageRelations(acc)
+        return applyDamageRelations(acc);
       },
       multipliers,
-    )
+    );
   } catch (error) {
-    console.error('Error calculating weaknesses:', error)
-    throw error
+    console.error("Error calculating weaknesses:", error);
+    throw error;
   }
-}
+};

@@ -1,8 +1,8 @@
-import { Chip } from '@/components/feature/pokemon-detail/main-info/Chip'
+import { Chip } from "@/components/feature/pokemon-detail/main-info/Chip";
 
 type Props = {
-  weight: number
-}
+  weight: number;
+};
 
 export const MainInfoWeight = ({ weight }: Props) => {
   return (
@@ -12,5 +12,5 @@ export const MainInfoWeight = ({ weight }: Props) => {
         {(weight * 0.1).toFixed(1)} <span className="text-sm">kg</span>
       </p>
     </div>
-  )
-}
+  );
+};

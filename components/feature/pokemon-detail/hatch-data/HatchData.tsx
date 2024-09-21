@@ -1,12 +1,12 @@
-import { DataCard } from '@/components/feature/pokemon-detail/DataCard'
-import { Heading } from '@/components/feature/pokemon-detail/Heading'
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
-import type { Species } from '@/types'
-import { eggGroupMapping } from '@/utils/translator'
+import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
+import { Heading } from "@/components/feature/pokemon-detail/Heading";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
+import type { Species } from "@/types";
+import { eggGroupMapping } from "@/utils/translator";
 
 type Props = {
-  species: Species
-}
+  species: Species;
+};
 
 export const HatchData = ({ species }: Props) => {
   return (
@@ -53,5 +53,5 @@ export const HatchData = ({ species }: Props) => {
         </Table>
       </DataCard>
     </div>
-  )
-}
+  );
+};

@@ -1,20 +1,20 @@
-import Image from 'next/image'
-import { DataCard } from '@/components/feature/pokemon-detail/DataCard'
-import { Heading } from '@/components/feature/pokemon-detail/Heading'
-import type { Species } from '@/types'
+import Image from "next/image";
+import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
+import { Heading } from "@/components/feature/pokemon-detail/Heading";
+import type { Species } from "@/types";
 
 type Props = {
-  species: Species
-}
+  species: Species;
+};
 
 export const OtherLang = ({ species }: Props) => {
   // 取得する言語のインデックス
   const index = [
-    { id: 'aRiu1GGi6Aoe', index: 8 },
-    { id: 'hTMPE6ntTofO', index: 5 },
-    { id: '3muzEmi4dpD5', index: 4 },
-    { id: '-_RS8ho736Fs', index: 2 },
-  ]
+    { id: "aRiu1GGi6Aoe", index: 8 },
+    { id: "hTMPE6ntTofO", index: 5 },
+    { id: "3muzEmi4dpD5", index: 4 },
+    { id: "-_RS8ho736Fs", index: 2 },
+  ];
 
   return (
     <div className="w-full lg:w-2/6">
@@ -35,5 +35,5 @@ export const OtherLang = ({ species }: Props) => {
         </ul>
       </DataCard>
     </div>
-  )
-}
+  );
+};
