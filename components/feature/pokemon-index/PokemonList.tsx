@@ -1,9 +1,9 @@
-import { Card } from '@/components/feature/pokemon-index/Card'
-import type { PokemonListResult } from '@/types/pokemon'
+import { Card } from "@/components/feature/pokemon-index/Card";
+import type { PokemonListResult } from "@/types/pokemon";
 
 type Props = {
-  pokemonList: PokemonListResult[]
-}
+  pokemonList: PokemonListResult[];
+};
 
 export const PokemonList = ({ pokemonList }: Props) => {
   return (
@@ -14,5 +14,5 @@ export const PokemonList = ({ pokemonList }: Props) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};

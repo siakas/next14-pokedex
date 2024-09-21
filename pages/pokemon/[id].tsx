@@ -1,18 +1,18 @@
-import { useRouter } from 'next/router'
-import { PokemonDetail } from '@/components/feature/pokemon-detail/PokemonDetail'
-import { Controller } from '@/components/layout/Controller'
-import Layout from '@/components/layout/Layout'
-import { useGetPokemonDetail } from '@/hooks/useGetPokemonDetail'
+import { useRouter } from "next/router";
+import { PokemonDetail } from "@/components/feature/pokemon-detail/PokemonDetail";
+import { Controller } from "@/components/layout/Controller";
+import Layout from "@/components/layout/Layout";
+import { useGetPokemonDetail } from "@/hooks/useGetPokemonDetail";
 
 const PokemonDetailPage = () => {
-  const router = useRouter()
-  const pokemonId = parseInt(router.query.id as string)
+  const router = useRouter();
+  const pokemonId = parseInt(router.query.id as string);
 
   const { pokemon, species, pokemonJaName, pokemonJaGenus, isLoading } =
-    useGetPokemonDetail(pokemonId)
+    useGetPokemonDetail(pokemonId);
 
   return (
-    <Layout>
+    <Layout title={pokemonJaName}>
       <Controller isShowList={false} />
 
       {!isLoading && pokemon && species && pokemonJaName && pokemonJaGenus && (
@@ -24,7 +24,7 @@ const PokemonDetailPage = () => {
         />
       )}
     </Layout>
-  )
-}
+  );
+};
 
-export default PokemonDetailPage
+export default PokemonDetailPage;

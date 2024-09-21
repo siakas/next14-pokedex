@@ -1,18 +1,18 @@
-import { DamageDataList } from '@/components/feature/pokemon-detail/damage-data/DamageDataList'
-import { DataCard } from '@/components/feature/pokemon-detail/DataCard'
-import { Heading } from '@/components/feature/pokemon-detail/Heading'
-import { Skeleton } from '@/components/ui/skeleton'
-import { useGetWeaknesses } from '@/hooks/useGetWeaknesses'
-import type { Pokemon } from '@/types'
+import { DamageDataList } from "@/components/feature/pokemon-detail/damage-data/DamageDataList";
+import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
+import { Heading } from "@/components/feature/pokemon-detail/Heading";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useGetWeaknesses } from "@/hooks/useGetWeaknesses";
+import type { Pokemon } from "@/types";
 
 type Props = {
-  pokemon: Pokemon
-}
+  pokemon: Pokemon;
+};
 
 export const DamageData = ({ pokemon }: Props) => {
-  const { data: weaknesses, isLoading } = useGetWeaknesses(pokemon.types)
+  const { data: weaknesses, isLoading } = useGetWeaknesses(pokemon.types);
 
-  if (!weaknesses) return null
+  if (!weaknesses) return null;
 
   return (
     <div className="w-fit items-center justify-center lg:w-2/6 xl:w-2/6">
@@ -25,5 +25,5 @@ export const DamageData = ({ pokemon }: Props) => {
         )}
       </DataCard>
     </div>
-  )
-}
+  );
+};

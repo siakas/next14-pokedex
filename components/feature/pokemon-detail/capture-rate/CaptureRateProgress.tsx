@@ -1,23 +1,23 @@
 import {
   CIRCLE_CIRCUMFERENCE,
   PROGRESS_BAR_COLORS,
-} from '@/components/feature/pokemon-detail/capture-rate/consts'
+} from "@/components/feature/pokemon-detail/capture-rate/consts";
 import {
   calculateCaptureProb,
   getColorByProbability,
-} from '@/components/feature/pokemon-detail/capture-rate/utils'
+} from "@/components/feature/pokemon-detail/capture-rate/utils";
 
 type Props = {
-  captureRate: number
-  pokemonHP: number
-}
+  captureRate: number;
+  pokemonHP: number;
+};
 
 export const CaptureRateProgress = ({ captureRate, pokemonHP }: Props) => {
   // 捕獲成功率の計算
-  const captureProb = calculateCaptureProb(pokemonHP, captureRate)
+  const captureProb = calculateCaptureProb(pokemonHP, captureRate);
 
   // 捕獲成功率に応じたプログレスバーの色の取得
-  const color = getColorByProbability(captureProb)
+  const color = getColorByProbability(captureProb);
 
   return (
     <div className="flex flex-col-reverse items-center gap-1">
@@ -72,5 +72,5 @@ export const CaptureRateProgress = ({ captureRate, pokemonHP }: Props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
