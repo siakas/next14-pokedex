@@ -8,8 +8,10 @@ type usePokemonListStore = {
   /** 一度に取得する件数 */
   limit: number;
 
-  setOffset: (offset: number) => void;
-  setLimit: (limit: number) => void;
+  actions: {
+    setOffset: (offset: number) => void;
+    setLimit: (limit: number) => void;
+  };
 };
 
 export const usePokemonListStore = create<usePokemonListStore>()(
@@ -18,12 +20,21 @@ export const usePokemonListStore = create<usePokemonListStore>()(
       (set) => ({
         offset: 0,
         limit: 30,
-        setOffset: (offset) => set({ offset }),
-        setLimit: (limit) => set({ limit }),
+        actions: {
+          setOffset: (offset) => set({ offset }),
+          setLimit: (limit) => set({ limit }),
+        },
       }),
       {
         name: "pokemonListStore",
         storage: createJSONStorage(() => sessionStorage),
+
+        // offset と limit のみを永続化し、actions を除外する
+        // これにより、以下の問題を回避:
+        // 1. リロード後の actions の機能喪失を防ぐ
+        // 2. JSON シリアライズ不可能な関数オブジェクトの永続化を避ける
+        // 3. ストアの初期化時に常に新しい actions が作成されることを保証
+        partialize: (state) => ({ offset: state.offset, limit: state.limit }),
       },
     ),
   ),
