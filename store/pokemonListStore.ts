@@ -1,16 +1,20 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
+import type { LIMIT_OPTIONS } from "@/consts/limit";
+
+/** 表示件数の種類 */
+export type Limit = (typeof LIMIT_OPTIONS)[number];
 
 /** ポケモン一覧取得に関する設定を管理するストア */
 type usePokemonListStore = {
   /** 現在のページ番号 */
   currentPage: number;
   /** 一度に取得する件数 */
-  limit: number;
+  limit: Limit;
 
   actions: {
     setCurrentPage: (page: number) => void;
-    setLimit: (limit: number) => void;
+    setLimit: (limit: Limit) => void;
   };
 };
 
