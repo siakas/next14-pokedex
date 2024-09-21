@@ -21,10 +21,14 @@ type Props = {
 };
 
 const Layout = ({ children, title }: Props) => {
+  const pageTitle = title
+    ? `${title} - Pokedex by Next.js`
+    : "Pokedex by Next.js";
+
   return (
     <>
       <Head>
-        <title>{title && `${title} - `}Pokedex by Next.js</title>
+        <title>{pageTitle}</title>
       </Head>
       <div
         className={cn(
