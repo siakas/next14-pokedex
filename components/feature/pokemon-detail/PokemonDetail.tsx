@@ -30,7 +30,7 @@ export const PokemonDetail = () => {
         <div className="flex w-full flex-col gap-10">
           <div className="flex size-full flex-col xl:flex-row xl:gap-x-6">
             {/* 基礎データ */}
-            <BasicData pokemon={pokemon} species={species} />
+            <BasicData />
 
             {/* 捕獲成功率 */}
             <CaptureRate />

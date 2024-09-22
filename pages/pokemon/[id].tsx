@@ -6,6 +6,7 @@ import { Controller } from "@/components/layout/Controller";
 import Layout from "@/components/layout/Layout";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 import {
+  getAbilityJaName,
   getJaGenusBySpecies,
   getJaNameBySpecies,
   getPokemonByPokemonId,
@@ -21,8 +22,8 @@ const PokemonDetailPage = () => {
     setPokemonData: state.actions.setPokemonData,
   }));
 
-  // ポケモン詳細情報を取得
-  const { data, refetch } = useQuery({
+  // ポケモン詳細情報をまとめて取得
+  const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["pokemonDetail", id],
     queryFn: async () => {
       const [pokemon, species] = await Promise.all([
@@ -32,17 +33,30 @@ const PokemonDetailPage = () => {
       const pokemonJaName = species ? getJaNameBySpecies(species) : "";
       const pokemonJaGenus = species ? getJaGenusBySpecies(species) : "";
       const weaknesses = pokemon ? await getWeaknesses(pokemon.types) : null;
+      const abilities = pokemon
+        ? await Promise.all(
+            pokemon.abilities.map(async (ability) => ({
+              ...ability,
+              jaName: await getAbilityJaName(ability.ability.url),
+            })),
+          )
+        : [];
 
-      setPokemonData({
+      // 取得したデータを整理
+      const results = {
         pokemon,
         species,
         pokemonJaName,
         pokemonJaGenus,
         weaknesses,
-      });
+        abilities,
+      };
+
+      // すべてのデータをストアに保存
+      setPokemonData(results);
 
       // data として返すデータ
-      return { pokemon, species, pokemonJaName, pokemonJaGenus, weaknesses };
+      return results;
     },
     enabled: !!id,
     staleTime: 5 * 60 * 1000,
@@ -53,12 +67,13 @@ const PokemonDetailPage = () => {
     refetch();
   }, [id, refetch]);
 
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error occurred</div>;
   if (!data) return null;
 
   return (
     <Layout title={data?.pokemonJaName}>
       <Controller isShowList={false} />
-
       <PokemonDetail />
     </Layout>
   );
