@@ -10,19 +10,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import type { Pokemon } from "@/types";
+import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 import { statsMapping } from "@/utils/translator";
 
-type Props = {
-  pokemon: Pokemon;
-};
+export const StatData = () => {
+  const { pokemon } = usePokemonDetailStore((state) => ({
+    pokemon: state.pokemon,
+  }));
 
-export const StatData = ({ pokemon }: Props) => {
   /** ステータス値ごとにプログレスバーのスタイルを変更 */
   const statRanker = (stat: number): string => {
     const rank = clamp(Math.ceil(stat / 30), 1, 6);
     return `stat-rank-${rank}`;
   };
+
+  if (!pokemon) return null;
 
   return (
     <div className="w-full sm:w-full lg:w-4/6">

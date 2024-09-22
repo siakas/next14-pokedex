@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect } from "react";
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { usePokemonListStore } from "@/store/pokemonListStore";
 import { getPokemonList } from "@/utils/pokemon";
 
@@ -57,7 +57,6 @@ export const useGetPokemonList = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["pokemonList", offset, limit],
     queryFn: () => getPokemonList(offset, limit),
-    placeholderData: keepPreviousData, // 新しいデータ取得中も前のデータを表示
     staleTime: 5 * 60 * 1000, // 5 分間はデータを fresh とみなす
   });
 
