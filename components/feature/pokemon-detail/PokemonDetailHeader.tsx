@@ -3,17 +3,18 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DexNumber } from "@/components/feature/pokemon-detail/DexNumber";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import type { Pokemon } from "@/types";
-
-type Props = {
-  dexNumber: string;
-  pokemon: Pokemon;
-};
+import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 
 const commonButtonStyle =
   "bg-blue-500 text-white hover:bg-blue-700 dark:bg-neutral-800 dark:hover:bg-neutral-700";
 
-export const PokemonDetailHeader = ({ dexNumber, pokemon }: Props) => {
+export const PokemonDetailHeader = () => {
+  const { pokemon } = usePokemonDetailStore((state) => ({
+    pokemon: state.pokemon,
+  }));
+
+  const dexNumber = `#${pokemon?.id.toString().padStart(4, "0")}`;
+
   const id = pokemon?.id ?? 1;
 
   const prevId = Math.max(1, id - 1);

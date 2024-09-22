@@ -1,14 +1,16 @@
 import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
 import { Heading } from "@/components/feature/pokemon-detail/Heading";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import type { Species } from "@/types";
+import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 import { eggGroupMapping } from "@/utils/translator";
 
-type Props = {
-  species: Species;
-};
+export const HatchData = () => {
+  const { species } = usePokemonDetailStore((state) => ({
+    species: state.species,
+  }));
 
-export const HatchData = ({ species }: Props) => {
+  if (!species) return null;
+
   return (
     <div className="w-full lg:w-4/6">
       <Heading>タマゴと性別</Heading>

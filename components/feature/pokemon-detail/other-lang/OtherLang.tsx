@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
 import { Heading } from "@/components/feature/pokemon-detail/Heading";
-import type { Species } from "@/types";
+import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 
-type Props = {
-  species: Species;
-};
+export const OtherLang = () => {
+  const { species } = usePokemonDetailStore((state) => ({
+    species: state.species,
+  }));
 
-export const OtherLang = ({ species }: Props) => {
   // 取得する言語のインデックス
   const index = [
     { id: "aRiu1GGi6Aoe", index: 8 },
@@ -15,6 +15,8 @@ export const OtherLang = ({ species }: Props) => {
     { id: "3muzEmi4dpD5", index: 4 },
     { id: "-_RS8ho736Fs", index: 2 },
   ];
+
+  if (!species) return null;
 
   return (
     <div className="w-full lg:w-2/6">

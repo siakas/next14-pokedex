@@ -1,5 +1,6 @@
 import { pokeApi } from "@/pages/api/pokeApi";
 import type { Pokemon, PokemonList, Species, Type } from "@/types";
+import type { Ability } from "@/types/ability";
 
 /**
  * 任意の件数ごとのポケモン一覧を取得
@@ -42,7 +43,7 @@ export const getPokemonByPokemonId = async (id: number) => {
   try {
     const res = await pokeApi.get<Pokemon>(`/pokemon/${id}`);
     return res.data;
-  } catch (error) {
+  } catch {
     // データ取得がエラーの場合は null を返す
     return null;
   }
@@ -57,7 +58,7 @@ export const getSpeciesByPokemonId = async (id: number) => {
   try {
     const res = await pokeApi.get<Species>(`/pokemon-species/${id}`);
     return res.data;
-  } catch (error) {
+  } catch {
     // データ取得がエラーの場合は null を返す
     return null;
   }
@@ -93,4 +94,22 @@ export const getJaGenusBySpecies = (species: Species): string => {
     (genus) => genus.language.name === "ja-Hrkt",
   );
   return jaGenus?.genus ?? "";
+};
+
+/**
+ * 特性の日本語表記を取得
+ * @param url 特性データを取得するための URL
+ * @returns 特性の日本語表記（見つからない場合は undefined）
+ */
+export const getAbilityJaName = async (
+  url: string,
+): Promise<string | undefined> => {
+  try {
+    const { data } = await pokeApi.get<Ability>(url);
+    // 日本語表記を検索して返す
+    return data.names.find((name) => name.language.name === "ja-Hrkt")?.name;
+  } catch (error) {
+    console.error("Error fetching ability:", error);
+    return undefined;
+  }
 };
