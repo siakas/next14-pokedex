@@ -6,24 +6,21 @@ import { MainInfo } from "@/components/feature/pokemon-detail/main-info/MainInfo
 import { OtherLang } from "@/components/feature/pokemon-detail/other-lang/OtherLang";
 import { PokemonDetailHeader } from "@/components/feature/pokemon-detail/PokemonDetailHeader";
 import { StatData } from "@/components/feature/pokemon-detail/stat-data/StatData";
-import type { Pokemon } from "@/types/pokemon";
-import type { Species } from "@/types/species";
+import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 
-type Props = {
-  pokemon: Pokemon;
-  species: Species;
-  pokemonJaName: string;
-  pokemonJaGenus: string;
-};
+export const PokemonDetail = () => {
+  const { pokemon, species, pokemonJaName, pokemonJaGenus } =
+    usePokemonDetailStore((state) => ({
+      pokemon: state.pokemon,
+      species: state.species,
+      pokemonJaName: state.pokemonJaName,
+      pokemonJaGenus: state.pokemonJaGenus,
+    }));
 
-export const PokemonDetail = ({
-  pokemon,
-  species,
-  pokemonJaName,
-  pokemonJaGenus,
-}: Props) => {
   /** 図鑑番号 */
-  const dexNumber = `#${pokemon.id.toString().padStart(4, "0")}`;
+  const dexNumber = `#${pokemon?.id.toString().padStart(4, "0")}`;
+
+  if (!pokemon || !species || !pokemonJaName || !pokemonJaGenus) return null;
 
   return (
     <div className="w-full rounded-lg border bg-slate-50 px-2 py-8 dark:border-black-900 dark:bg-black-900 sm:px-7 md:px-14">

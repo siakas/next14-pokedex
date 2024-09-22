@@ -1,28 +1,50 @@
 import { useRouter } from "next/router";
+import { useQuery } from "@tanstack/react-query";
 import { PokemonDetail } from "@/components/feature/pokemon-detail/PokemonDetail";
 import { Controller } from "@/components/layout/Controller";
 import Layout from "@/components/layout/Layout";
-import { useGetPokemonDetail } from "@/hooks/useGetPokemonDetail";
+import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
+import {
+  getJaGenusBySpecies,
+  getJaNameBySpecies,
+  getPokemonByPokemonId,
+  getSpeciesByPokemonId,
+} from "@/utils/pokemon";
 
 const PokemonDetailPage = () => {
   const router = useRouter();
-  const pokemonId = parseInt(router.query.id as string);
+  const id = parseInt(router.query.id as string, 10);
 
-  const { pokemon, species, pokemonJaName, pokemonJaGenus, isLoading } =
-    useGetPokemonDetail(pokemonId);
+  const { setPokemonData } = usePokemonDetailStore((state) => ({
+    setPokemonData: state.actions.setPokemonData,
+  }));
+
+  const { isLoading, isError } = useQuery({
+    queryKey: ["pokemon", id],
+    queryFn: async () => {
+      const [pokemon, species] = await Promise.all([
+        getPokemonByPokemonId(id),
+        getSpeciesByPokemonId(id),
+      ]);
+      const pokemonJaName = species ? getJaNameBySpecies(species) : "";
+      const pokemonJaGenus = species ? getJaGenusBySpecies(species) : "";
+
+      setPokemonData({ pokemon, species, pokemonJaName, pokemonJaGenus });
+
+      // data として返すデータ
+      return { pokemon, species, pokemonJaName, pokemonJaGenus };
+    },
+    enabled: !!id,
+    staleTime: 5 * 60 * 1000,
+  });
+
+  if (isLoading || isError) return null;
 
   return (
-    <Layout title={pokemonJaName}>
+    <Layout>
       <Controller isShowList={false} />
 
-      {!isLoading && pokemon && species && pokemonJaName && pokemonJaGenus && (
-        <PokemonDetail
-          pokemon={pokemon}
-          species={species}
-          pokemonJaName={pokemonJaName}
-          pokemonJaGenus={pokemonJaGenus}
-        />
-      )}
+      <PokemonDetail />
     </Layout>
   );
 };
