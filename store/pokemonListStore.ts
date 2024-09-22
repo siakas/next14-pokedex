@@ -6,7 +6,7 @@ import type { LIMIT_OPTIONS } from "@/consts/limit";
 export type Limit = (typeof LIMIT_OPTIONS)[number];
 
 /** ポケモン一覧取得に関する設定を管理するストア */
-type usePokemonListStore = {
+type PokemonListStore = {
   /** 現在のページ番号 */
   currentPage: number;
   /** 一度に取得する件数 */
@@ -18,7 +18,7 @@ type usePokemonListStore = {
   };
 };
 
-export const usePokemonListStore = create<usePokemonListStore>()(
+export const usePokemonListStore = create<PokemonListStore>()(
   devtools(
     persist(
       (set) => ({
