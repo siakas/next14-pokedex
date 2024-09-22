@@ -11,6 +11,7 @@ import {
   getPokemonByPokemonId,
   getSpeciesByPokemonId,
 } from "@/utils/pokemon";
+import { getWeaknesses } from "@/utils/weaknesses";
 
 const PokemonDetailPage = () => {
   const router = useRouter();
@@ -20,7 +21,8 @@ const PokemonDetailPage = () => {
     setPokemonData: state.actions.setPokemonData,
   }));
 
-  const { data, isLoading, isError, refetch } = useQuery({
+  // ポケモン詳細情報を取得
+  const { data, refetch } = useQuery({
     queryKey: ["pokemonDetail", id],
     queryFn: async () => {
       const [pokemon, species] = await Promise.all([
@@ -29,11 +31,18 @@ const PokemonDetailPage = () => {
       ]);
       const pokemonJaName = species ? getJaNameBySpecies(species) : "";
       const pokemonJaGenus = species ? getJaGenusBySpecies(species) : "";
+      const weaknesses = pokemon ? await getWeaknesses(pokemon.types) : null;
 
-      setPokemonData({ pokemon, species, pokemonJaName, pokemonJaGenus });
+      setPokemonData({
+        pokemon,
+        species,
+        pokemonJaName,
+        pokemonJaGenus,
+        weaknesses,
+      });
 
       // data として返すデータ
-      return { pokemon, species, pokemonJaName, pokemonJaGenus };
+      return { pokemon, species, pokemonJaName, pokemonJaGenus, weaknesses };
     },
     enabled: !!id,
     staleTime: 5 * 60 * 1000,
@@ -44,7 +53,7 @@ const PokemonDetailPage = () => {
     refetch();
   }, [id, refetch]);
 
-  if (isLoading || isError) return null;
+  if (!data) return null;
 
   return (
     <Layout title={data?.pokemonJaName}>
