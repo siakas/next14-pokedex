@@ -9,29 +9,44 @@ import {
 } from "@/utils/pokemon";
 import { getWeaknesses } from "@/utils/weaknesses";
 
+/**
+ * ポケモン詳細情報を取得するカスタムフック
+ * @param id ポケモンID
+ * @returns ポケモン詳細情報のクエリ結果
+ */
 export const useGetPokemonDetail = (id: number) => {
-  const { setPokemonData } = usePokemonDetailStore((state) => ({
-    setPokemonData: state.actions.setPokemonData,
-  }));
+  const setPokemonData = usePokemonDetailStore(
+    (state) => state.actions.setPokemonData,
+  );
 
   return useQuery({
     queryKey: ["pokemonDetail", id],
     queryFn: async () => {
+      // ポケモン基本情報と種族情報を並行で取得
       const [pokemon, species] = await Promise.all([
         getPokemonByPokemonId(id),
         getSpeciesByPokemonId(id),
       ]);
-      const pokemonJaName = species ? getJaNameBySpecies(species) : "";
-      const pokemonJaGenus = species ? getJaGenusBySpecies(species) : "";
-      const weaknesses = pokemon ? await getWeaknesses(pokemon.types) : null;
-      const abilities = pokemon
-        ? await Promise.all(
-            pokemon.abilities.map(async (ability) => ({
-              ...ability,
-              jaName: await getAbilityJaName(ability.ability.url),
-            })),
-          )
-        : [];
+
+      // ポケモンまたは種族情報が見つからない場合はエラーをスロー
+      if (!pokemon || !species) {
+        throw new Error(`ポケモンが見つかりません (ID: ${id})`);
+      }
+
+      // 日本語名と分類を取得
+      const pokemonJaName = getJaNameBySpecies(species) ?? "";
+      const pokemonJaGenus = getJaGenusBySpecies(species) ?? "";
+
+      // タイプ相性による弱点を計算
+      const weaknesses = await getWeaknesses(pokemon.types);
+
+      // 特性の日本語名を取得
+      const abilities = await Promise.all(
+        pokemon.abilities.map(async (ability) => ({
+          ...ability,
+          jaName: (await getAbilityJaName(ability.ability.url)) ?? "",
+        })),
+      );
 
       // 取得したデータを整理
       const results = {
@@ -46,7 +61,7 @@ export const useGetPokemonDetail = (id: number) => {
       // すべてのデータをストアに保存
       setPokemonData(results);
 
-      // data として返すデータ
+      // ここで返却したデータを data として取得できる
       return results;
     },
     enabled: !!id,
