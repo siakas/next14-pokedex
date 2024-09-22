@@ -20,8 +20,8 @@ const PokemonDetailPage = () => {
     setPokemonData: state.actions.setPokemonData,
   }));
 
-  const { isLoading, isError, refetch } = useQuery({
-    queryKey: ["pokemon", id],
+  const { data, isLoading, isError, refetch } = useQuery({
+    queryKey: ["pokemonDetail", id],
     queryFn: async () => {
       const [pokemon, species] = await Promise.all([
         getPokemonByPokemonId(id),
@@ -47,7 +47,7 @@ const PokemonDetailPage = () => {
   if (isLoading || isError) return null;
 
   return (
-    <Layout>
+    <Layout title={data?.pokemonJaName}>
       <Controller isShowList={false} />
 
       <PokemonDetail />
