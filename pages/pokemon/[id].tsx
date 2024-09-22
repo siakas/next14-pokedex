@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { PokemonDetail } from "@/components/feature/pokemon-detail/PokemonDetail";
 import { Controller } from "@/components/layout/Controller";
@@ -19,7 +20,7 @@ const PokemonDetailPage = () => {
     setPokemonData: state.actions.setPokemonData,
   }));
 
-  const { isLoading, isError } = useQuery({
+  const { isLoading, isError, refetch } = useQuery({
     queryKey: ["pokemon", id],
     queryFn: async () => {
       const [pokemon, species] = await Promise.all([
@@ -37,6 +38,11 @@ const PokemonDetailPage = () => {
     enabled: !!id,
     staleTime: 5 * 60 * 1000,
   });
+
+  // ページ遷移で id が変わるたびに再取得する
+  useEffect(() => {
+    refetch();
+  }, [id, refetch]);
 
   if (isLoading || isError) return null;
 
