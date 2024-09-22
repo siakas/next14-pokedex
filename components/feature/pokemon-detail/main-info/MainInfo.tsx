@@ -6,22 +6,19 @@ import { MainInfoName } from "@/components/feature/pokemon-detail/main-info/Main
 import { MainInfoTypes } from "@/components/feature/pokemon-detail/main-info/MainInfoTypes";
 import { MainInfoWeight } from "@/components/feature/pokemon-detail/main-info/MainInfoWeight";
 import { cn } from "@/lib/utils";
-import type { Pokemon, Species } from "@/types";
+import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 
-type Props = {
-  pokemon: Pokemon;
-  species: Species;
-  pokemonJaName: string;
-  pokemonJaGenus: string;
-};
-
-export const MainInfo = ({
-  pokemon,
-  species,
-  pokemonJaName,
-  pokemonJaGenus,
-}: Props) => {
+export const MainInfo = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { pokemon, pokemonJaName, pokemonJaGenus } = usePokemonDetailStore(
+    (state) => ({
+      pokemon: state.pokemon,
+      pokemonJaName: state.pokemonJaName,
+      pokemonJaGenus: state.pokemonJaGenus,
+    }),
+  );
+
+  if (!pokemon || !pokemonJaName || !pokemonJaGenus) return null;
 
   return (
     <div className="m-auto w-fit items-center justify-center">

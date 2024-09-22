@@ -17,23 +17,15 @@ export const PokemonDetail = () => {
       pokemonJaGenus: state.pokemonJaGenus,
     }));
 
-  /** 図鑑番号 */
-  const dexNumber = `#${pokemon?.id.toString().padStart(4, "0")}`;
-
   if (!pokemon || !species || !pokemonJaName || !pokemonJaGenus) return null;
 
   return (
     <div className="w-full rounded-lg border bg-slate-50 px-2 py-8 dark:border-black-900 dark:bg-black-900 sm:px-7 md:px-14">
-      <PokemonDetailHeader dexNumber={dexNumber} pokemon={pokemon} />
+      <PokemonDetailHeader />
 
       <div className="my-8 flex h-full w-auto flex-col justify-start sm:gap-y-4 md:items-start md:justify-center xl:flex-row xl:gap-x-10">
         {/* 基本情報 */}
-        <MainInfo
-          pokemon={pokemon}
-          species={species}
-          pokemonJaName={pokemonJaName}
-          pokemonJaGenus={pokemonJaGenus}
-        />
+        <MainInfo />
 
         <div className="flex w-full flex-col gap-10">
           <div className="flex size-full flex-col xl:flex-row xl:gap-x-6">
@@ -41,22 +33,22 @@ export const PokemonDetail = () => {
             <BasicData pokemon={pokemon} species={species} />
 
             {/* 捕獲成功率 */}
-            <CaptureRate pokemon={pokemon} species={species} />
+            <CaptureRate />
           </div>
 
           <div className="flex size-full flex-col xl:flex-row xl:gap-x-6">
             {/* タマゴと性別 */}
-            <HatchData species={species} />
+            <HatchData />
 
             {/* 言語別の名称 */}
-            <OtherLang species={species} />
+            <OtherLang />
           </div>
         </div>
       </div>
 
       <div className="flex flex-col items-center justify-center gap-x-6 gap-y-4 lg:flex-row lg:items-start">
         {/* 種族値 */}
-        <StatData pokemon={pokemon} />
+        <StatData />
 
         {/* タイプ相性による弱点 */}
         <DamageData pokemon={pokemon} />
