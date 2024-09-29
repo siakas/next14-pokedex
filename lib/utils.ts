@@ -1,7 +1,7 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
 import { LIMIT_OPTIONS } from "@/consts/limit";
 import type { Limit } from "@/store/pokemonListStore";
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));

@@ -1,8 +1,6 @@
-import type { HTMLAttributes } from "react";
-import { forwardRef } from "react";
-import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import type { VariantProps } from "class-variance-authority";
+import { type VariantProps, cva } from "class-variance-authority";
+import { type HTMLAttributes, forwardRef } from "react";
 
 const spinnerVariants = cva("animate-spin text-gray-200 dark:text-gray-600", {
   variants: {

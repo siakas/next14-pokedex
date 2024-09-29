@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-import { useCallback, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { usePokemonListStore } from "@/store/pokemonListStore";
 import { getPokemonList } from "@/utils/pokemon";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
+import { useCallback, useEffect } from "react";
 
 /**
  * カスタムフック：ポケモンリストの取得と管理を行う

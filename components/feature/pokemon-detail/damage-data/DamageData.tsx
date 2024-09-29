@@ -1,6 +1,6 @@
-import { DamageDataList } from "@/components/feature/pokemon-detail/damage-data/DamageDataList";
 import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
 import { Heading } from "@/components/feature/pokemon-detail/Heading";
+import { DamageDataList } from "@/components/feature/pokemon-detail/damage-data/DamageDataList";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 
 export const DamageData = () => {

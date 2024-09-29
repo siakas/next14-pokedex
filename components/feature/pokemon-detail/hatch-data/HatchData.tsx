@@ -21,10 +21,10 @@ export const HatchData = () => {
               <TableCell className="w-36 font-bold">タマゴグループ：</TableCell>
               <TableCell>
                 <ul className="flex">
-                  {species.egg_groups.map((group, index) => (
+                  {species.egg_groups.map((group) => (
                     <li
                       className="[&:not(:first-child)]:before:mx-2 [&:not(:first-child)]:before:content-['/']"
-                      key={index}
+                      key={group.name}
                     >
                       {eggGroupMapping[group.name]}
                     </li>

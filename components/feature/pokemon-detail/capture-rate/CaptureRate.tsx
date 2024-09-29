@@ -1,6 +1,6 @@
-import { CaptureRateProgress } from "@/components/feature/pokemon-detail/capture-rate/CaptureRateProgress";
 import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
 import { Heading } from "@/components/feature/pokemon-detail/Heading";
+import { CaptureRateProgress } from "@/components/feature/pokemon-detail/capture-rate/CaptureRateProgress";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 
 export const CaptureRate = () => {

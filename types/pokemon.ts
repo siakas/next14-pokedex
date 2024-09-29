@@ -75,7 +75,7 @@ export type Pokemon = {
       url: string;
     };
   }[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   past_types: any[];
   species: {
     name: string;
