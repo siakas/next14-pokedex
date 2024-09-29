@@ -8,10 +8,7 @@ import type { Ability } from "@/types/ability";
  * @param limit 取得件数
  * @returns ポケモン一覧
  */
-export const getPokemonList = async (
-  offset: number = 0,
-  limit: number = 30,
-) => {
+export const getPokemonList = async (offset = 0, limit = 30) => {
   try {
     const res = await pokeApi.get<PokemonList>(
       `/pokemon?limit=${limit}&offset=${offset}`,
@@ -23,13 +20,14 @@ export const getPokemonList = async (
       results: res.data.results.map((pokemon) => {
         return {
           ...pokemon,
-          id: parseInt(pokemon.url.split("/").slice(-2)[0]),
+          id: Number.parseInt(pokemon.url.split("/").slice(-2)[0]),
         };
       }),
     };
 
     return _res;
   } catch (error) {
+    // biome-ignore lint/complexity/noUselessCatch: <explanation>
     throw error;
   }
 };
@@ -72,6 +70,7 @@ export const getTypeDetailByTypeName = async (type: string) => {
     const res = await pokeApi.get<Type>(`/type/${type}`);
     return res.data;
   } catch (error) {
+    // biome-ignore lint/complexity/noUselessCatch: <explanation>
     throw error;
   }
 };

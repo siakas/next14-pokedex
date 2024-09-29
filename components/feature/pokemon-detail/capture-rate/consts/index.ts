@@ -11,6 +11,6 @@ export const PROGRESS_BAR_COLORS = {
     start: "#6366f1",
     end: "#3b82f6",
   },
-};
+} as const;
 
 export const CIRCLE_CIRCUMFERENCE = 251.2;

@@ -1,9 +1,9 @@
-import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DexNumber } from "@/components/feature/pokemon-detail/DexNumber";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 const commonButtonStyle =
   "bg-blue-500 text-white hover:bg-blue-700 dark:bg-neutral-800 dark:hover:bg-neutral-700";

@@ -1,10 +1,10 @@
+import { PokemonDetailHeader } from "@/components/feature/pokemon-detail/PokemonDetailHeader";
 import { BasicData } from "@/components/feature/pokemon-detail/basic-data/BasicData";
 import { CaptureRate } from "@/components/feature/pokemon-detail/capture-rate/CaptureRate";
 import { DamageData } from "@/components/feature/pokemon-detail/damage-data/DamageData";
 import { HatchData } from "@/components/feature/pokemon-detail/hatch-data/HatchData";
 import { MainInfo } from "@/components/feature/pokemon-detail/main-info/MainInfo";
 import { OtherLang } from "@/components/feature/pokemon-detail/other-lang/OtherLang";
-import { PokemonDetailHeader } from "@/components/feature/pokemon-detail/PokemonDetailHeader";
 import { StatData } from "@/components/feature/pokemon-detail/stat-data/StatData";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 

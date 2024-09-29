@@ -1,17 +1,18 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { PokemonDetail } from "@/components/feature/pokemon-detail/PokemonDetail";
 import { Controller } from "@/components/layout/Controller";
 import Layout from "@/components/layout/Layout";
 import { useGetPokemonDetail } from "@/hooks/useGetPokemonDetail";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const PokemonDetailPage = () => {
   const router = useRouter();
-  const id = parseInt(router.query.id as string, 10);
+  const id = Number.parseInt(router.query.id as string, 10);
 
   const { data, isLoading, isError, refetch } = useGetPokemonDetail(id);
 
   // ページ遷移で id が変わるたびに再取得する
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     refetch();
   }, [id, refetch]);
