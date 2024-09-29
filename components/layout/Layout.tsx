@@ -1,7 +1,8 @@
-import { Inter, Noto_Sans_JP } from "next/font/google";
-import Head from "next/head";
 import { PageBackground } from "@/components/layout/PageBackground";
 import { cn } from "@/lib/utils";
+import { Inter, Noto_Sans_JP } from "next/font/google";
+import Head from "next/head";
+import type { ReactNode } from "react";
 
 const fontInter = Inter({
   subsets: ["latin"],
@@ -16,7 +17,7 @@ const fontNotoSansJp = Noto_Sans_JP({
 });
 
 type Props = {
-  children: React.ReactNode;
+  children: ReactNode;
   title?: string;
 };
 

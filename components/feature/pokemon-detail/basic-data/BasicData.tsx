@@ -26,10 +26,10 @@ export const BasicData = () => {
               <TableCell className="w-36 font-bold">特性：</TableCell>
               <TableCell>
                 <ul className="flex flex-col">
-                  {abilities.map((ability, index) => (
-                    <li key={index}>
+                  {abilities.map((ability) => (
+                    <li key={ability.ability.name}>
                       {ability.jaName}
-                      {ability.is_hidden && <>（夢）</>}
+                      {ability.is_hidden && "（夢）"}
                     </li>
                   ))}
                 </ul>

@@ -1,8 +1,8 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useGetPokemonList } from "@/hooks/useGetPokemonList";
 import { cn } from "@/lib/utils";
 import { usePokemonListStore } from "@/store/pokemonListStore";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export const PageNavigation = () => {
   const { handlePrevButton, handleNextButton } = useGetPokemonList();

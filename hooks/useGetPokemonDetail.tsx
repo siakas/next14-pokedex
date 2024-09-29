@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 import {
   getAbilityJaName,
@@ -8,6 +7,7 @@ import {
   getSpeciesByPokemonId,
 } from "@/utils/pokemon";
 import { getWeaknesses } from "@/utils/weaknesses";
+import { useQuery } from "@tanstack/react-query";
 
 /**
  * ポケモン詳細情報を取得するカスタムフック

@@ -1,7 +1,7 @@
-import { create } from "zustand";
-import { devtools } from "zustand/middleware";
 import type { Pokemon, PokemonAbility, Species } from "@/types";
 import type { MultipliersObject } from "@/utils/weaknesses";
+import { create } from "zustand";
+import { devtools } from "zustand/middleware";
 
 /** ポケモン詳細で参照するデータを管理するストア */
 type PokemonDetailStore = {

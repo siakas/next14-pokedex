@@ -1,6 +1,6 @@
+import type { LIMIT_OPTIONS } from "@/consts/limit";
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
-import type { LIMIT_OPTIONS } from "@/consts/limit";
 
 /** 表示件数の種類 */
 export type Limit = (typeof LIMIT_OPTIONS)[number];

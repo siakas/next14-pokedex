@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import {
   getJaNameBySpecies,
   getPokemonByPokemonId,
   getSpeciesByPokemonId,
 } from "@/utils/pokemon";
+import { useQuery } from "@tanstack/react-query";
 
 export const useGetPokemonNames = (pokemonId: number) => {
   // ポケモン詳細情報を取得する useQuery
