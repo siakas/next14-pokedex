@@ -48,6 +48,6 @@
     "typescript": "^5"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"]
+    "*.{js,jsx,ts,tsx}": ["eslint --fix", "biome check --write"]
   }
 }
