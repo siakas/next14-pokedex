@@ -1,6 +1,6 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { usePokemonListStore } from "@/store/pokemonListStore";
-import Link from "next/link";
 
 export const BackToList = () => {
   const { currentPage } = usePokemonListStore((state) => ({

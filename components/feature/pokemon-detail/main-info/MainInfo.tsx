@@ -1,3 +1,5 @@
+import { useState } from "react";
+import Image from "next/image";
 import { DividerVertical } from "@/components/feature/pokemon-detail/main-info/DividerVertical";
 import { MainInfoHeight } from "@/components/feature/pokemon-detail/main-info/MainInfoHeight";
 import { MainInfoName } from "@/components/feature/pokemon-detail/main-info/MainInfoName";
@@ -5,8 +7,6 @@ import { MainInfoTypes } from "@/components/feature/pokemon-detail/main-info/Mai
 import { MainInfoWeight } from "@/components/feature/pokemon-detail/main-info/MainInfoWeight";
 import { cn } from "@/lib/utils";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
-import Image from "next/image";
-import { useState } from "react";
 
 export const MainInfo = () => {
   const [imageLoaded, setImageLoaded] = useState(false);

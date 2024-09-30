@@ -1,6 +1,6 @@
+import { flow, fromPairs, reduce } from "lodash-es";
 import type { PokemonType } from "@/types";
 import { getTypeDetailByTypeName } from "@/utils/pokemon";
-import { flow, fromPairs, reduce } from "lodash-es";
 
 /** すべてのポケモンタイプ */
 const allTypes = [

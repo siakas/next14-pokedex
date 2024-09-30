@@ -1,3 +1,4 @@
+import { clamp } from "lodash-es";
 import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
 import { Heading } from "@/components/feature/pokemon-detail/Heading";
 import { Progress } from "@/components/ui/progress";
@@ -11,7 +12,6 @@ import {
 } from "@/components/ui/table";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 import { statsMapping } from "@/utils/translator";
-import { clamp } from "lodash-es";
 
 export const StatData = () => {
   const { pokemon } = usePokemonDetailStore((state) => ({

@@ -1,5 +1,5 @@
 export type Ability = {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   effect_changes: any[];
   effect_entries: {
     effect: string;
