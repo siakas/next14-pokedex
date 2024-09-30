@@ -1,7 +1,7 @@
+import Image from "next/image";
 import { DataCard } from "@/components/feature/pokemon-detail/DataCard";
 import { Heading } from "@/components/feature/pokemon-detail/Heading";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
-import Image from "next/image";
 
 export const OtherLang = () => {
   const { species } = usePokemonDetailStore((state) => ({

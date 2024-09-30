@@ -1,10 +1,10 @@
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { Spinner } from "@/components/feature/loading/Spinner";
 import { useGetPokemonNames } from "@/hooks/useGetPokemonNames";
 import { cn } from "@/lib/utils";
 import { typesMapping } from "@/utils/translator";
-import Image from "next/image";
-import Link from "next/link";
-import { useState } from "react";
 
 type Props = {
   pokemonId: number;

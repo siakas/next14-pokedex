@@ -1,9 +1,9 @@
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { PokemonDetail } from "@/components/feature/pokemon-detail/PokemonDetail";
 import { Controller } from "@/components/layout/Controller";
 import Layout from "@/components/layout/Layout";
 import { useGetPokemonDetail } from "@/hooks/useGetPokemonDetail";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 const PokemonDetailPage = () => {
   const router = useRouter();

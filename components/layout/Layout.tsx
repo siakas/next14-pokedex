@@ -1,8 +1,8 @@
-import { PageBackground } from "@/components/layout/PageBackground";
-import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
 import { Inter, Noto_Sans_JP } from "next/font/google";
 import Head from "next/head";
-import type { ReactNode } from "react";
+import { PageBackground } from "@/components/layout/PageBackground";
+import { cn } from "@/lib/utils";
 
 const fontInter = Inter({
   subsets: ["latin"],

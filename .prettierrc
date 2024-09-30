@@ -8,6 +8,17 @@
   "arrowParens": "always",
   "printWidth": 80,
   "bracketSpacing": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^(react/(.*)$)|^(react$)",
+    "^(next/(.*)$)|^(next$)",
+    "<THIRD_PARTY_MODULES>",
+    "^types$",
+    "^@/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": false,
+  "importOrderSortSpecifiers": true,
   "overrides": [
     {
       "files": "*.html",

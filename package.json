@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.53.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20",
     "@types/react": "^18",
