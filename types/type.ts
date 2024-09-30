@@ -53,7 +53,7 @@ export type Type = {
     };
     name: string;
   }[];
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   past_damage_relations: any[];
   pokemon: {
     pokemon: {
