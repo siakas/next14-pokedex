@@ -3,6 +3,12 @@
   "version": "0.2.5",
   "private": true,
   "packageManager": "pnpm@11.2.2",
+  "engines": {
+    "node": "24.x"
+  },
+  "volta": {
+    "node": "24.22.3"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
