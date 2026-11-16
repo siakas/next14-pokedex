@@ -2,6 +2,7 @@
   "name": "next14-pokedex",
   "version": "0.2.5",
   "private": true,
+  "packageManager": "pnpm@11.2.2",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
