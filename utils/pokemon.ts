@@ -2,6 +2,17 @@ import { pokeApi } from "@/pages/api/pokeApi";
 import type { Pokemon, PokemonList, Species, Type } from "@/types";
 import type { Ability } from "@/types/ability";
 
+/** 日本語（カナ）の言語コード。PokeAPI は大文字小文字を変えることがあるため、比較は小文字で行う */
+const JA_KANA_LANGUAGE_CODE = "ja-hrkt";
+
+/**
+ * 言語コードが日本語（カナ）かを、大文字小文字を区別せずに判定
+ * @param languageName PokeAPI の言語コード（例：ja-hrkt）
+ * @returns 日本語（カナ）であれば true
+ */
+const isJaKana = (languageName: string): boolean =>
+  languageName.toLowerCase() === JA_KANA_LANGUAGE_CODE;
+
 /**
  * 任意の件数ごとのポケモン一覧を取得
  * @param offset 取得開始位置
@@ -81,7 +92,7 @@ export const getTypeDetailByTypeName = async (type: string) => {
  * @returns ポケモン日本語名
  */
 export const getJaNameBySpecies = (species: Species): string => {
-  const jaName = species.names.find((name) => name.language.name === "ja-Hrkt");
+  const jaName = species.names.find((name) => isJaKana(name.language.name));
   return jaName?.name ?? "";
 };
 
@@ -89,9 +100,7 @@ export const getJaNameBySpecies = (species: Species): string => {
  * 種族情報からポケモン日本語分類名を取得（例：かえんポケモン）
  */
 export const getJaGenusBySpecies = (species: Species): string => {
-  const jaGenus = species.genera.find(
-    (genus) => genus.language.name === "ja-Hrkt",
-  );
+  const jaGenus = species.genera.find((genus) => isJaKana(genus.language.name));
   return jaGenus?.genus ?? "";
 };
 
@@ -106,7 +115,7 @@ export const getAbilityJaName = async (
   try {
     const { data } = await pokeApi.get<Ability>(url);
     // 日本語表記を検索して返す
-    return data.names.find((name) => name.language.name === "ja-Hrkt")?.name;
+    return data.names.find((name) => isJaKana(name.language.name))?.name;
   } catch (error) {
     console.error("Error fetching ability:", error);
     return undefined;
