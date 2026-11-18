@@ -1,0 +1,165 @@
+{
+  "id": 1,
+  "name": "bulbasaur",
+  "order": 1,
+  "gender_rate": 1,
+  "capture_rate": 45,
+  "base_happiness": 70,
+  "is_baby": false,
+  "is_legendary": false,
+  "is_mythical": false,
+  "hatch_counter": 20,
+  "has_gender_differences": false,
+  "forms_switchable": false,
+  "growth_rate": {
+    "name": "medium-slow",
+    "url": "https://pokeapi.co/api/v2/growth-rate/4/"
+  },
+  "pokedex_numbers": [
+    {
+      "entry_number": 1,
+      "pokedex": {
+        "name": "national",
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      }
+    },
+    {
+      "entry_number": 1,
+      "pokedex": {
+        "name": "kanto",
+        "url": "https://pokeapi.co/api/v2/pokedex/2/"
+      }
+    }
+  ],
+  "egg_groups": [
+    {
+      "name": "monster",
+      "url": "https://pokeapi.co/api/v2/egg-group/1/"
+    },
+    {
+      "name": "plant",
+      "url": "https://pokeapi.co/api/v2/egg-group/7/"
+    }
+  ],
+  "color": {
+    "name": "green",
+    "url": "https://pokeapi.co/api/v2/pokemon-color/5/"
+  },
+  "shape": {
+    "name": "quadruped",
+    "url": "https://pokeapi.co/api/v2/pokemon-shape/8/"
+  },
+  "evolves_from_species": null,
+  "evolution_chain": {
+    "url": "https://pokeapi.co/api/v2/evolution-chain/1/"
+  },
+  "habitat": {
+    "name": "grassland",
+    "url": "https://pokeapi.co/api/v2/pokemon-habitat/3/"
+  },
+  "generation": {
+    "name": "generation-i",
+    "url": "https://pokeapi.co/api/v2/generation/1/"
+  },
+  "names": [
+    {
+      "name": "フシギダネ",
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      }
+    },
+    {
+      "name": "Bulbasaur",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      }
+    },
+    {
+      "name": "フシギダネ",
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      }
+    }
+  ],
+  "pal_park_encounters": [
+    {
+      "base_score": 50,
+      "rate": 30,
+      "area": {
+        "name": "field",
+        "url": "https://pokeapi.co/api/v2/pal-park-area/2/"
+      }
+    }
+  ],
+  "form_descriptions": [],
+  "flavor_text_entries": [
+    {
+      "flavor_text": "A strange seed was\nplanted on its\nback at birth.\fThe plant sprouts\nand grows with\nthis POKéMON.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "version": {
+        "name": "red",
+        "url": "https://pokeapi.co/api/v2/version/1/"
+      }
+    },
+    {
+      "flavor_text": "生まれたときから　背中に\n不思議な　タネが　植えてあって\n体と　ともに　育つという。",
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      },
+      "version": {
+        "name": "x",
+        "url": "https://pokeapi.co/api/v2/version/23/"
+      }
+    },
+    {
+      "flavor_text": "うまれたときから　せなかに\nふしぎな　タネが　うえてあって\nからだと　ともに　そだつという。",
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "version": {
+        "name": "x",
+        "url": "https://pokeapi.co/api/v2/version/23/"
+      }
+    }
+  ],
+  "genera": [
+    {
+      "genus": "たねポケモン",
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      }
+    },
+    {
+      "genus": "Seed Pokémon",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      }
+    },
+    {
+      "genus": "たねポケモン",
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      }
+    }
+  ],
+  "varieties": [
+    {
+      "is_default": true,
+      "pokemon": {
+        "name": "bulbasaur",
+        "url": "https://pokeapi.co/api/v2/pokemon/1/"
+      }
+    }
+  ]
+}
