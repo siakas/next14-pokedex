@@ -1,6 +1,7 @@
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import tailwind from "eslint-plugin-tailwindcss";
+import prettier from "eslint-config-prettier/flat";
 
 export default [
   // 旧 .eslintignore の内容（gitignore と同じく、"/" を含まないパターンはどの階層にも当てはまる）
@@ -44,4 +45,6 @@ export default [
       "tailwindcss/no-custom-classname": "off",
     },
   },
+  // Prettier と競合する整形系のルールを無効にする（最後に置く）
+  prettier,
 ];

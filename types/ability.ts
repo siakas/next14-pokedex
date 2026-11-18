@@ -1,5 +1,4 @@
 export type Ability = {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   effect_changes: any[];
   effect_entries: {
     effect: string;

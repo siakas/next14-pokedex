@@ -75,7 +75,6 @@ export type Pokemon = {
       url: string;
     };
   }[];
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   past_types: any[];
   species: {
     name: string;
