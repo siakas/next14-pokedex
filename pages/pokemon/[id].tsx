@@ -12,7 +12,6 @@ const PokemonDetailPage = () => {
   const { data, isLoading, isError, refetch } = useGetPokemonDetail(id);
 
   // ページ遷移で id が変わるたびに再取得する
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     refetch();
   }, [id, refetch]);

@@ -1,0 +1,3 @@
+# .gitignore に書かれたファイル（node_modules・.next など）は Prettier が自動で除外する
+pnpm-lock.yaml
+public

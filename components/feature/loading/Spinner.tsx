@@ -17,8 +17,7 @@ const spinnerVariants = cva("animate-spin text-gray-200 dark:text-gray-600", {
 });
 
 export interface SpinnerProps
-  extends HTMLAttributes<SVGSVGElement>,
-    VariantProps<typeof spinnerVariants> {
+  extends HTMLAttributes<SVGSVGElement>, VariantProps<typeof spinnerVariants> {
   srText?: string;
 }
 
