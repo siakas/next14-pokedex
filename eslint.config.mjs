@@ -1,9 +1,6 @@
-import { FlatCompat } from "@eslint/eslintrc";
 import pluginQuery from "@tanstack/eslint-plugin-query";
+import nextVitals from "eslint-config-next/core-web-vitals";
 import tailwind from "eslint-plugin-tailwindcss";
-
-// eslint-config-next@15 は eslintrc 形式の設定だけを提供しているため、FlatCompat で読み込む
-const compat = new FlatCompat({ baseDirectory: import.meta.dirname });
 
 export default [
   // 旧 .eslintignore の内容（gitignore と同じく、"/" を含まないパターンはどの階層にも当てはまる）
@@ -28,7 +25,7 @@ export default [
       "**/*.mjs",
     ],
   },
-  ...compat.extends("next/core-web-vitals"),
+  ...nextVitals,
   ...tailwind.configs["flat/recommended"],
   ...pluginQuery.configs["flat/recommended"],
   {
