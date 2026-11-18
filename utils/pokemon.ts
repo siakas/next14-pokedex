@@ -1,9 +1,7 @@
+import { JA_KANA_LANGUAGE_CODE } from "@/consts/language";
 import { pokeApi } from "@/pages/api/pokeApi";
 import type { Pokemon, PokemonList, Species, Type } from "@/types";
 import type { Ability } from "@/types/ability";
-
-/** 日本語（カナ）の言語コード。PokeAPI は大文字小文字を変えることがあるため、比較は小文字で行う */
-const JA_KANA_LANGUAGE_CODE = "ja-hrkt";
 
 /**
  * 言語コードが日本語（カナ）かを、大文字小文字を区別せずに判定
