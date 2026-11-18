@@ -1,10 +1,11 @@
 import react from "@vitejs/plugin-react";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 // テストの方針は docs/testing/test-plan.md を参照
 export default defineConfig({
-  plugins: [tsconfigPaths(), react()],
+  plugins: [react()],
+  // tsconfig.json の paths（@/*）を解決する
+  resolve: { tsconfigPaths: true },
   test: {
     projects: [
       {
