@@ -141,7 +141,7 @@ AI エージェントは、テストの前に、この 3 つがエラーなく�
 
 Next.js 16 の公式ガイド（`node_modules/next/dist/docs/02-pages/02-guides/testing/`）は、単体テストのツールとして Vitest と Jest の両方を案内しています。Vitest を選んだのは、次の 3 点からです。
 
-- `lodash-es` のような ES Modules のパッケージを、設定を追加せずに読み込めます。Jest では `transformIgnorePatterns` で変換の対象に加える必要があります
+- ES Modules だけを配布するパッケージを、設定を追加せずに読み込めます。Jest では `transformIgnorePatterns` で変換の対象に加える必要があります
 - `vitest run` が速く起動し、`--project` で単体と結合を分けて実行できます。エージェントは変更に応じて、速いほうだけを先に実行できます
 - 失敗したときに、期待した値と実際の値の差分と、テストファイルの行を出力します
 
