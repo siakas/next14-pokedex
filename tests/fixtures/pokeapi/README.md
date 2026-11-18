@@ -6,12 +6,12 @@
 
 2026-11-19 に、次の URL から一度だけ取得しました。
 
-| ディレクトリ | 取得元の URL | 内容 |
-| --- | --- | --- |
-| `pokemon/` | `https://pokeapi.co/api/v2/pokemon/{1,6,92}` | 1 フシギダネ、6 リザードン、92 ゴース |
-| `pokemon-species/` | `https://pokeapi.co/api/v2/pokemon-species/{1,6,92}` | 上の 3 匹の種族 |
-| `type/` | `https://pokeapi.co/api/v2/type/{fire,flying,ghost,grass,poison}` | 上の 3 匹のタイプ |
-| `ability/` | `https://pokeapi.co/api/v2/ability/{26,34,65,66,94}` | 上の 3 匹の特性（ふゆう・ようりょくそ・しんりょく・もうか・サンパワー）。ファイル名は特性の ID |
+| ディレクトリ       | 取得元の URL                                                      | 内容                                                                                           |
+| ------------------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `pokemon/`         | `https://pokeapi.co/api/v2/pokemon/{1,6,92}`                      | 1 フシギダネ、6 リザードン、92 ゴース                                                          |
+| `pokemon-species/` | `https://pokeapi.co/api/v2/pokemon-species/{1,6,92}`              | 上の 3 匹の種族                                                                                |
+| `type/`            | `https://pokeapi.co/api/v2/type/{fire,flying,ghost,grass,poison}` | 上の 3 匹のタイプ                                                                              |
+| `ability/`         | `https://pokeapi.co/api/v2/ability/{26,34,65,66,94}`              | 上の 3 匹の特性（ふゆう・ようりょくそ・しんりょく・もうか・サンパワー）。ファイル名は特性の ID |
 
 3 匹は、弱点の計算の分岐を確かめるために選んでいます。リザードン（ほのお・ひこう）はいわが 4 倍、フシギダネ（くさ・どく）はくさが 0.25 倍、ゴース（ゴースト・どく）はノーマルとかくとうが 0 倍になります。
 
@@ -35,9 +35,9 @@ JSON を import すると、文字列は `string` に広がります。そのた
 
 取得した時点で、実際のレスポンスと `types/` の型が次の点で食い違っていました。アプリの不具合ではなく型の定義の問題のため、検査の型だけを補っています。
 
-| 型 | 項目 | `types/` の型 | 実際のレスポンス |
-| --- | --- | --- | --- |
-| `Species` | `egg_groups` | 要素が 1 つの tuple | 要素が 2 つのことがある（フシギダネ・リザードン） |
-| `Species` | `evolves_from_species` | null を許さない | 進化前がいないと null（フシギダネ・ゴース） |
-| `Pokemon` | `past_abilities[].abilities[].ability` | null を許さない | null になる（フシギダネ・リザードン） |
-| `Pokemon` | `sprites.versions` | `generation-vi` の `omegaruby-alphasapphire` など | キーの名前と構成が違う（`omega-ruby-alpha-sapphire` など）。アプリは使っていない |
+| 型        | 項目                                   | `types/` の型                                     | 実際のレスポンス                                                                 |
+| --------- | -------------------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `Species` | `egg_groups`                           | 要素が 1 つの tuple                               | 要素が 2 つのことがある（フシギダネ・リザードン）                                |
+| `Species` | `evolves_from_species`                 | null を許さない                                   | 進化前がいないと null（フシギダネ・ゴース）                                      |
+| `Pokemon` | `past_abilities[].abilities[].ability` | null を許さない                                   | null になる（フシギダネ・リザードン）                                            |
+| `Pokemon` | `sprites.versions`                     | `generation-vi` の `omegaruby-alphasapphire` など | キーの名前と構成が違う（`omega-ruby-alpha-sapphire` など）。アプリは使っていない |

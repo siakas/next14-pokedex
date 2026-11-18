@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/table";
 import { usePokemonDetailStore } from "@/store/pokemonDetailStore";
 import { statsMapping } from "@/utils/translator";
-import { clamp } from "lodash-es";
 
 export const StatData = () => {
   const { pokemon } = usePokemonDetailStore((state) => ({
@@ -20,7 +19,7 @@ export const StatData = () => {
 
   /** ステータス値ごとにプログレスバーのスタイルを変更 */
   const statRanker = (stat: number): string => {
-    const rank = clamp(Math.ceil(stat / 30), 1, 6);
+    const rank = Math.min(Math.max(Math.ceil(stat / 30), 1), 6);
     return `stat-rank-${rank}`;
   };
 

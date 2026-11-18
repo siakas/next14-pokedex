@@ -36,7 +36,6 @@ export const getPokemonList = async (offset = 0, limit = 30) => {
 
     return _res;
   } catch (error) {
-    // biome-ignore lint/complexity/noUselessCatch: <explanation>
     throw error;
   }
 };
@@ -79,7 +78,6 @@ export const getTypeDetailByTypeName = async (type: string) => {
     const res = await pokeApi.get<Type>(`/type/${type}`);
     return res.data;
   } catch (error) {
-    // biome-ignore lint/complexity/noUselessCatch: <explanation>
     throw error;
   }
 };

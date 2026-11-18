@@ -1,6 +1,5 @@
 import type { PokemonType } from "@/types";
 import { getTypeDetailByTypeName } from "@/utils/pokemon";
-import { flow, fromPairs, reduce } from "lodash-es";
 
 /** すべてのポケモンタイプ */
 const allTypes = [
@@ -33,21 +32,18 @@ const applyDamageRelation = (
   damageRelation: { name: string; url: string }[],
   multiplier: number,
 ): MultipliersObject => {
-  return reduce(
-    damageRelation,
-    (acc, { name }) => ({
-      ...acc,
-      [name]: acc[name as keyof MultipliersObject] * multiplier,
-    }),
-    multipliers,
-  );
+  const result = { ...multipliers };
+  for (const { name } of damageRelation) {
+    result[name as keyof MultipliersObject] *= multiplier;
+  }
+  return result;
 };
 
 export const getWeaknesses = async (
   types: PokemonType[],
 ): Promise<MultipliersObject> => {
   try {
-    const multipliers = fromPairs(
+    const multipliers = Object.fromEntries(
       allTypes.map((type) => [type, 1]),
     ) as MultipliersObject;
 
@@ -55,30 +51,13 @@ export const getWeaknesses = async (
       types.map(({ type }) => getTypeDetailByTypeName(type.name)),
     );
 
-    return reduce(
-      typeDetails,
-      (acc, typeData) => {
-        const applyDamageRelations = flow(
-          (m: MultipliersObject) =>
-            applyDamageRelation(
-              m,
-              typeData.damage_relations.double_damage_from,
-              2,
-            ),
-          (m: MultipliersObject) =>
-            applyDamageRelation(
-              m,
-              typeData.damage_relations.half_damage_from,
-              0.5,
-            ),
-          (m: MultipliersObject) =>
-            applyDamageRelation(m, typeData.damage_relations.no_damage_from, 0),
-        );
-
-        return applyDamageRelations(acc);
-      },
-      multipliers,
-    );
+    return typeDetails.reduce((acc, typeData) => {
+      const { double_damage_from, half_damage_from, no_damage_from } =
+        typeData.damage_relations;
+      const afterDouble = applyDamageRelation(acc, double_damage_from, 2);
+      const afterHalf = applyDamageRelation(afterDouble, half_damage_from, 0.5);
+      return applyDamageRelation(afterHalf, no_damage_from, 0);
+    }, multipliers);
   } catch (error) {
     console.error("Error calculating weaknesses:", error);
     throw error;

@@ -53,7 +53,6 @@ export type Type = {
     };
     name: string;
   }[];
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   past_damage_relations: any[];
   pokemon: {
     pokemon: {

@@ -36,26 +36,26 @@
 
 ソースのモジュールを、外部への依存と、テストのしやすさ・リスクで整理しました。「担当の層」は [4 章](#4-テストの種類ごとの定義と対象) の定義に従います。
 
-| モジュール | 主な外部依存 | テストのしやすさ | リスク | 担当の層 |
-| --- | --- | --- | --- | --- |
-| `utils/pokemon.ts` の `getJaNameBySpecies`・`getJaGenusBySpecies` | なし | 高い。純粋な関数 | 中。言語コードの大文字小文字の違い（`ja-Hrkt`）で名前が空になる不具合が過去にあった | 単体 |
-| `utils/pokemon.ts` の取得関数（`getPokemonList`・`getPokemonByPokemonId`・`getSpeciesByPokemonId`・`getTypeDetailByTypeName`・`getAbilityJaName`） | PokeAPI（axios） | 中。HTTP の差し替えが要る | 高い。URL から ID を取り出す処理や、エラーのときに `null`・`undefined` を返すか例外を投げるかが関数ごとに違う | 単体（MSW） |
-| `utils/weaknesses.ts` の `getWeaknesses` | PokeAPI（`/type/{name}`） | 中。HTTP の差し替えが要る | 高い。2 タイプの倍率の掛け合わせ（4 倍・0.25 倍・0 倍）を誤ると、詳細ページの弱点の表示が誤る | 単体（MSW） |
-| `utils/translator.ts` | なし | 高い。対応表だけ | 低い | 単体 |
-| `components/feature/pokemon-detail/capture-rate/utils/` | なし | 高い。純粋な関数 | 中。捕獲率の計算式と、色の境界値（0.1・0.2） | 単体 |
-| `lib/utils.ts`（`cn`・`sleep`・`isValidLimit`） | なし | 高い | 低い | 単体 |
-| `store/pokemonListStore.ts` | `sessionStorage`（`persist`） | 中。モジュール単位の 1 つのインスタンスで、テストの間で状態が残る | 中。保存する項目を `currentPage` と `limit` に絞る `partialize` の指定が変わると、関数まで保存しようとして、リロード後に操作できなくなる | 単体 |
-| `store/pokemonDetailStore.ts` | なし | 中。テストの間で状態が残る | 低い | 単体 |
-| `hooks/useGetPokemonList.tsx` | TanStack Query、`next/router`、ストア | 低い。ルーター・ストア・HTTP をそろえる必要がある | 高い。URL の `page` とストアの同期、`offset` の計算 | 結合 |
-| `hooks/useGetPokemonDetail.tsx` | TanStack Query、ストア、PokeAPI（4 種類のエンドポイント） | 低い | 高い。1 か所の取得の失敗で、詳細ページ全体がエラーになる | 結合 |
-| `hooks/useGetPokemonNames.tsx` | TanStack Query、PokeAPI | 中 | 中。カードの名前の表示 | 結合 |
-| `components/feature/pokemon-index/`（`Card`・`PokemonList`） | `useGetPokemonNames`、`next/image`、`next/link` | 中 | 中。取得に失敗したカードは何も表示しない | 結合 |
-| `components/feature/pokemon-detail/` | 詳細のストア、`next/image`、`next/link` | 中。ストアに値を入れれば描画できる | 中。各セクションの表示 | 結合 |
-| `components/layout/`（`Controller`・`PageNavigation`・`SelectLimit`・`BackToList`・`ToggleTheme`・`Layout`） | ストア、`useGetPokemonList`、Radix UI、`next-themes`、`next/font/google` | 低い。Radix UI の `Select` は jsdom で動かすための補助が要る | 高い。ページ送りと表示件数の切り替え | 結合・E2E |
-| `components/ui/`（shadcn/ui から生成） | Radix UI | — | 低い。生成したコードで、利用側のテストで間接的に確かめる | 対象外 |
-| `pages/index.tsx`・`pages/pokemon/[id].tsx` | 上記のすべて | 低い | 高い。利用者が直接触る画面 | 結合・E2E |
-| `pages/_app.tsx`・`pages/_document.tsx` | QueryClient、`next-themes` | — | 中。テーマの切り替えは E2E で確かめる | E2E |
-| `consts/`・`types/` | なし | — | 型と定数だけ。静的解析で確かめる | 静的解析 |
+| モジュール                                                                                                                                         | 主な外部依存                                                             | テストのしやすさ                                                  | リスク                                                                                                                                   | 担当の層    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| `utils/pokemon.ts` の `getJaNameBySpecies`・`getJaGenusBySpecies`                                                                                  | なし                                                                     | 高い。純粋な関数                                                  | 中。言語コードの大文字小文字の違い（`ja-Hrkt`）で名前が空になる不具合が過去にあった                                                      | 単体        |
+| `utils/pokemon.ts` の取得関数（`getPokemonList`・`getPokemonByPokemonId`・`getSpeciesByPokemonId`・`getTypeDetailByTypeName`・`getAbilityJaName`） | PokeAPI（axios）                                                         | 中。HTTP の差し替えが要る                                         | 高い。URL から ID を取り出す処理や、エラーのときに `null`・`undefined` を返すか例外を投げるかが関数ごとに違う                            | 単体（MSW） |
+| `utils/weaknesses.ts` の `getWeaknesses`                                                                                                           | PokeAPI（`/type/{name}`）                                                | 中。HTTP の差し替えが要る                                         | 高い。2 タイプの倍率の掛け合わせ（4 倍・0.25 倍・0 倍）を誤ると、詳細ページの弱点の表示が誤る                                            | 単体（MSW） |
+| `utils/translator.ts`                                                                                                                              | なし                                                                     | 高い。対応表だけ                                                  | 低い                                                                                                                                     | 単体        |
+| `components/feature/pokemon-detail/capture-rate/utils/`                                                                                            | なし                                                                     | 高い。純粋な関数                                                  | 中。捕獲率の計算式と、色の境界値（0.1・0.2）                                                                                             | 単体        |
+| `lib/utils.ts`（`cn`・`sleep`・`isValidLimit`）                                                                                                    | なし                                                                     | 高い                                                              | 低い                                                                                                                                     | 単体        |
+| `store/pokemonListStore.ts`                                                                                                                        | `sessionStorage`（`persist`）                                            | 中。モジュール単位の 1 つのインスタンスで、テストの間で状態が残る | 中。保存する項目を `currentPage` と `limit` に絞る `partialize` の指定が変わると、関数まで保存しようとして、リロード後に操作できなくなる | 単体        |
+| `store/pokemonDetailStore.ts`                                                                                                                      | なし                                                                     | 中。テストの間で状態が残る                                        | 低い                                                                                                                                     | 単体        |
+| `hooks/useGetPokemonList.tsx`                                                                                                                      | TanStack Query、`next/router`、ストア                                    | 低い。ルーター・ストア・HTTP をそろえる必要がある                 | 高い。URL の `page` とストアの同期、`offset` の計算                                                                                      | 結合        |
+| `hooks/useGetPokemonDetail.tsx`                                                                                                                    | TanStack Query、ストア、PokeAPI（4 種類のエンドポイント）                | 低い                                                              | 高い。1 か所の取得の失敗で、詳細ページ全体がエラーになる                                                                                 | 結合        |
+| `hooks/useGetPokemonNames.tsx`                                                                                                                     | TanStack Query、PokeAPI                                                  | 中                                                                | 中。カードの名前の表示                                                                                                                   | 結合        |
+| `components/feature/pokemon-index/`（`Card`・`PokemonList`）                                                                                       | `useGetPokemonNames`、`next/image`、`next/link`                          | 中                                                                | 中。取得に失敗したカードは何も表示しない                                                                                                 | 結合        |
+| `components/feature/pokemon-detail/`                                                                                                               | 詳細のストア、`next/image`、`next/link`                                  | 中。ストアに値を入れれば描画できる                                | 中。各セクションの表示                                                                                                                   | 結合        |
+| `components/layout/`（`Controller`・`PageNavigation`・`SelectLimit`・`BackToList`・`ToggleTheme`・`Layout`）                                       | ストア、`useGetPokemonList`、Radix UI、`next-themes`、`next/font/google` | 低い。Radix UI の `Select` は jsdom で動かすための補助が要る      | 高い。ページ送りと表示件数の切り替え                                                                                                     | 結合・E2E   |
+| `components/ui/`（shadcn/ui から生成）                                                                                                             | Radix UI                                                                 | —                                                                 | 低い。生成したコードで、利用側のテストで間接的に確かめる                                                                                 | 対象外      |
+| `pages/index.tsx`・`pages/pokemon/[id].tsx`                                                                                                        | 上記のすべて                                                             | 低い                                                              | 高い。利用者が直接触る画面                                                                                                               | 結合・E2E   |
+| `pages/_app.tsx`・`pages/_document.tsx`                                                                                                            | QueryClient、`next-themes`                                               | —                                                                 | 中。テーマの切り替えは E2E で確かめる                                                                                                    | E2E         |
+| `consts/`・`types/`                                                                                                                                | なし                                                                     | —                                                                 | 型と定数だけ。静的解析で確かめる                                                                                                         | 静的解析    |
 
 ### テストを書くうえで注意が要る点
 
@@ -72,12 +72,12 @@
 
 テスティングトロフィーの 4 層に、次の役割を割り当てます。下の層ほど速く、上の層ほど利用者の使い方に近くなります。
 
-| 層 | 任せること | 量の目安 | 実行するコマンド |
-| --- | --- | --- | --- |
-| 静的解析 | 型の誤り、フックの使い方、未使用の import、整形 | すべてのファイル | `pnpm lint`・`pnpm exec tsc --noEmit`・`pnpm check` |
-| 単体テスト | 純粋な関数とストアの入出力。HTTP は MSW で差し替える | 10 ファイル前後 | `pnpm test:unit` |
-| 結合テスト | ページとコンポーネントを描画し、フック・ストア・TanStack Query・ルーターを組み合わせた表示と操作。HTTP は MSW で差し替える | 最も多くする | `pnpm test:integration` |
-| E2E テスト | 実際のブラウザでしか確かめられない、主要な操作の流れ | 4〜6 件 | `pnpm test:e2e` |
+| 層         | 任せること                                                                                                                 | 量の目安         | 実行するコマンド                                           |
+| ---------- | -------------------------------------------------------------------------------------------------------------------------- | ---------------- | ---------------------------------------------------------- |
+| 静的解析   | 型の誤り、フックの使い方、未使用の import、整形                                                                            | すべてのファイル | `pnpm lint`・`pnpm exec tsc --noEmit`・`pnpm format:check` |
+| 単体テスト | 純粋な関数とストアの入出力。HTTP は MSW で差し替える                                                                       | 10 ファイル前後  | `pnpm test:unit`                                           |
+| 結合テスト | ページとコンポーネントを描画し、フック・ストア・TanStack Query・ルーターを組み合わせた表示と操作。HTTP は MSW で差し替える | 最も多くする     | `pnpm test:integration`                                    |
+| E2E テスト | 実際のブラウザでしか確かめられない、主要な操作の流れ                                                                       | 4〜6 件          | `pnpm test:e2e`                                            |
 
 結合テストを最も厚くするのは、本プロジェクトの不具合が起きやすい箇所が、URL・ストア・データの取得・表示の組み合わせにあるためです。たとえば、ページ送りの不具合は、`useGetPokemonList` 単体や `PageNavigation` 単体のテストでは見つかりません。一方で、本プロジェクトの関数の多くは小さく、単体テストで網羅しても、画面の不具合はほとんど防げません。
 
@@ -86,8 +86,8 @@
 静的解析の層は、すでにある 3 つのツールで構成し、新しいツールは加えません。
 
 - TypeScript（`pnpm exec tsc --noEmit`）：型の誤りを見つけます。`tsconfig.json` の `include` は `**/*.ts`・`**/*.tsx` のため、追加するテストファイルとフィクスチャも型検査の対象になります。フィクスチャに `types/` の型を付けると、API の型とフィクスチャの食い違いも見つかります
-- ESLint（`pnpm lint`）：Next.js の `core-web-vitals`、TanStack Query、Tailwind CSS のルールで、フックの依存配列やクエリキーの誤りを見つけます
-- Biome（`pnpm check`）：整形と、未使用の import・変数などの lint を行います。コミットの前に lint-staged が ESLint と Biome を実行します
+- ESLint（`pnpm lint`）：Next.js の `core-web-vitals`、TanStack Query、Tailwind CSS のルールで、フックの依存配列やクエリキーの誤りと、未使用の import を見つけます。未使用の import は `eslint --fix` で削除できます
+- Prettier（`pnpm format:check`）：整形が崩れていないかを確かめます。コミットの前に lint-staged が ESLint と Prettier を実行します
 
 AI エージェントは、テストの前に、この 3 つがエラーなく終わることを確かめます（[8 章](#8-ai-駆動開発の観点での評価と要件)）。型の誤りはテストより速く、原因の箇所を直接示すためです。
 
@@ -127,21 +127,21 @@ AI エージェントは、テストの前に、この 3 つがエラーなく�
 
 ### 一覧
 
-| 用途 | 採用するもの | バージョンの目安 | 主な候補 |
-| --- | --- | --- | --- |
-| テストのランナー | Vitest | `vitest@^5`（5.1.1）、`vite@^8` | Jest（`next/jest`） |
-| JSX の変換と `@/` のパスの解決 | `@vitejs/plugin-react`・`vite-tsconfig-paths` | 6.3.0・6.1.1 | — |
-| DOM の環境 | jsdom | 31.0.1 | happy-dom |
-| コンポーネントの描画と操作 | React Testing Library・user-event・jest-dom | `@testing-library/react` 16.3.3、`@testing-library/dom` 10、`@testing-library/user-event` 14.6.12、`@testing-library/jest-dom` 7.0.1 | Enzyme |
-| HTTP の差し替え | MSW | `msw@^2`（2.15.0） | `vi.mock` で `pages/api/pokeApi.ts` を差し替える、axios-mock-adapter |
-| `next/router` の差し替え | next-router-mock | 1.0.5 | `vi.mock("next/router")` に自作のモックを書く |
-| E2E テスト | Playwright | `@playwright/test` 1.65.1 | Cypress |
+| 用途                           | 採用するもの                                  | バージョンの目安                                                                                                                     | 主な候補                                                             |
+| ------------------------------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| テストのランナー               | Vitest                                        | `vitest@^5`（5.1.1）、`vite@^8`                                                                                                      | Jest（`next/jest`）                                                  |
+| JSX の変換と `@/` のパスの解決 | `@vitejs/plugin-react`・`vite-tsconfig-paths` | 6.3.0・6.1.1                                                                                                                         | —                                                                    |
+| DOM の環境                     | jsdom                                         | 31.0.1                                                                                                                               | happy-dom                                                            |
+| コンポーネントの描画と操作     | React Testing Library・user-event・jest-dom   | `@testing-library/react` 16.3.3、`@testing-library/dom` 10、`@testing-library/user-event` 14.6.12、`@testing-library/jest-dom` 7.0.1 | Enzyme                                                               |
+| HTTP の差し替え                | MSW                                           | `msw@^2`（2.15.0）                                                                                                                   | `vi.mock` で `pages/api/pokeApi.ts` を差し替える、axios-mock-adapter |
+| `next/router` の差し替え       | next-router-mock                              | 1.0.5                                                                                                                                | `vi.mock("next/router")` に自作のモックを書く                        |
+| E2E テスト                     | Playwright                                    | `@playwright/test` 1.65.1                                                                                                            | Cypress                                                              |
 
 ### Vitest を選んだ理由
 
 Next.js 16 の公式ガイド（`node_modules/next/dist/docs/02-pages/02-guides/testing/`）は、単体テストのツールとして Vitest と Jest の両方を案内しています。Vitest を選んだのは、次の 3 点からです。
 
-- `lodash-es` のような ES Modules のパッケージを、設定を追加せずに読み込めます。Jest では `transformIgnorePatterns` で変換の対象に加える必要があります
+- ES Modules だけを配布するパッケージを、設定を追加せずに読み込めます。Jest では `transformIgnorePatterns` で変換の対象に加える必要があります
 - `vitest run` が速く起動し、`--project` で単体と結合を分けて実行できます。エージェントは変更に応じて、速いほうだけを先に実行できます
 - 失敗したときに、期待した値と実際の値の差分と、テストファイルの行を出力します
 
@@ -241,15 +241,15 @@ playwright.config.ts
 
 優先度は最も高くします。速く、外部に依存せず、エージェントが変更のたびに実行するテストだからです。
 
-| 対象 | テストファイル | 主に確かめること |
-| --- | --- | --- |
-| `utils/pokemon.ts` | `tests/unit/utils/pokemon.test.ts` | 日本語名と分類を、言語コードの大文字小文字によらず取り出すこと。日本語がないと空文字を返すこと。一覧の URL から ID を取り出すこと。取得に失敗したときに `null`・`undefined` を返すか、例外を投げるかが関数ごとに現在のとおりであること |
-| `utils/weaknesses.ts` | `tests/unit/utils/weaknesses.test.ts` | 1 タイプ・2 タイプでの倍率（4 倍・2 倍・0.5 倍・0.25 倍・0 倍）。タイプの取得に失敗したときに例外を投げること |
-| `utils/translator.ts` | `tests/unit/utils/translator.test.ts` | 18 のタイプすべてに日本語名があること |
-| `components/feature/pokemon-detail/capture-rate/utils/` | `tests/unit/components/feature/pokemon-detail/capture-rate/utils.test.ts` | 捕獲率の計算結果と、色の境界値（0.1・0.2） |
-| `lib/utils.ts` | `tests/unit/lib/utils.test.ts` | `cn` が Tailwind CSS のクラスの衝突を解決すること。`isValidLimit` が 30・50・100 だけを受け付けること。`sleep` が指定した時間の後に解決すること（偽のタイマーを使う） |
-| `store/pokemonListStore.ts` | `tests/unit/store/pokemonListStore.test.ts` | 初期値、`setCurrentPage`・`setLimit`、`sessionStorage` に `currentPage` と `limit` だけを保存すること |
-| `store/pokemonDetailStore.ts` | `tests/unit/store/pokemonDetailStore.test.ts` | 初期値と `setPokemonData` |
+| 対象                                                    | テストファイル                                                            | 主に確かめること                                                                                                                                                                                                                       |
+| ------------------------------------------------------- | ------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `utils/pokemon.ts`                                      | `tests/unit/utils/pokemon.test.ts`                                        | 日本語名と分類を、言語コードの大文字小文字によらず取り出すこと。日本語がないと空文字を返すこと。一覧の URL から ID を取り出すこと。取得に失敗したときに `null`・`undefined` を返すか、例外を投げるかが関数ごとに現在のとおりであること |
+| `utils/weaknesses.ts`                                   | `tests/unit/utils/weaknesses.test.ts`                                     | 1 タイプ・2 タイプでの倍率（4 倍・2 倍・0.5 倍・0.25 倍・0 倍）。タイプの取得に失敗したときに例外を投げること                                                                                                                          |
+| `utils/translator.ts`                                   | `tests/unit/utils/translator.test.ts`                                     | 18 のタイプすべてに日本語名があること                                                                                                                                                                                                  |
+| `components/feature/pokemon-detail/capture-rate/utils/` | `tests/unit/components/feature/pokemon-detail/capture-rate/utils.test.ts` | 捕獲率の計算結果と、色の境界値（0.1・0.2）                                                                                                                                                                                             |
+| `lib/utils.ts`                                          | `tests/unit/lib/utils.test.ts`                                            | `cn` が Tailwind CSS のクラスの衝突を解決すること。`isValidLimit` が 30・50・100 だけを受け付けること。`sleep` が指定した時間の後に解決すること（偽のタイマーを使う）                                                                  |
+| `store/pokemonListStore.ts`                             | `tests/unit/store/pokemonListStore.test.ts`                               | 初期値、`setCurrentPage`・`setLimit`、`sessionStorage` に `currentPage` と `limit` だけを保存すること                                                                                                                                  |
+| `store/pokemonDetailStore.ts`                           | `tests/unit/store/pokemonDetailStore.test.ts`                             | 初期値と `setPokemonData`                                                                                                                                                                                                              |
 
 #80 で導入するもの：`vitest`・`vite`・`@vitejs/plugin-react`・`vite-tsconfig-paths`・`jsdom`・`msw@^2`。#80 で作るもの：`vitest.config.mts`（`unit` の project）、`tests/setup/`、`tests/mocks/pokeapi/`、`tests/fixtures/pokeapi/`（単体テストで使う分）。`package.json` に `test`・`test:unit` のスクリプトを加えます。
 
@@ -257,12 +257,12 @@ playwright.config.ts
 
 優先度は #80 の次です。テスティングトロフィーで最も厚くする層で、テストの件数も最も多くなります。
 
-| 対象 | テストファイル | 主に確かめること |
-| --- | --- | --- |
-| 一覧ページ | `tests/integration/pages/index.test.tsx` | モックの一覧のポケモンの日本語名がカードに表示されること。「次の 30 件」を押すと `offset=30` で取得し、URL が `/?page=2` になること。URL が `/?page=3` のときに `offset=60` で取得すること。表示件数で 50 件を選ぶと `limit=50` で取得すること。一覧の取得に失敗したときに、カードを表示せず、例外で画面が壊れないこと |
-| 一覧のカード | `tests/integration/components/feature/pokemon-index/Card.test.tsx` | 図鑑番号（`#0006`）・タイプの日本語名・詳細へのリンク。種族の取得に失敗したカードを表示しないこと |
-| 詳細ページ | `tests/integration/pages/pokemon/[id].test.tsx` | モックの名前・タイプ・図鑑番号が表示されること。弱点の表に、リザードンのいわが 4 倍で表示されること。取得に失敗したときに `Error occurred` と表示すること |
-| 一覧へ戻るボタン | `tests/integration/components/layout/BackToList.test.tsx` | ストアのページ番号が、リンクの `href`（`/?page={n}`）になること |
+| 対象             | テストファイル                                                     | 主に確かめること                                                                                                                                                                                                                                                                                                       |
+| ---------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 一覧ページ       | `tests/integration/pages/index.test.tsx`                           | モックの一覧のポケモンの日本語名がカードに表示されること。「次の 30 件」を押すと `offset=30` で取得し、URL が `/?page=2` になること。URL が `/?page=3` のときに `offset=60` で取得すること。表示件数で 50 件を選ぶと `limit=50` で取得すること。一覧の取得に失敗したときに、カードを表示せず、例外で画面が壊れないこと |
+| 一覧のカード     | `tests/integration/components/feature/pokemon-index/Card.test.tsx` | 図鑑番号（`#0006`）・タイプの日本語名・詳細へのリンク。種族の取得に失敗したカードを表示しないこと                                                                                                                                                                                                                      |
+| 詳細ページ       | `tests/integration/pages/pokemon/[id].test.tsx`                    | モックの名前・タイプ・図鑑番号が表示されること。弱点の表に、リザードンのいわが 4 倍で表示されること。取得に失敗したときに `Error occurred` と表示すること                                                                                                                                                              |
+| 一覧へ戻るボタン | `tests/integration/components/layout/BackToList.test.tsx`          | ストアのページ番号が、リンクの `href`（`/?page={n}`）になること                                                                                                                                                                                                                                                        |
 
 取得した範囲（`offset`・`limit`）は、MSW が受けたリクエストの URL を記録して確かめます。#81 で導入するもの：`@testing-library/react`・`@testing-library/dom`・`@testing-library/user-event`・`@testing-library/jest-dom`・`next-router-mock`。`vitest.config.mts` に `integration` の project を加え、`test:integration` のスクリプトを加えます。
 
@@ -272,11 +272,11 @@ playwright.config.ts
 
 優先度は最も低くします。実行に時間がかかり、確かめる範囲の多くは結合テストと重なるためです。ただし、ルーティングとテーマの切り替えは、E2E テストでしか確かめられません。
 
-| テストファイル | 確かめること |
-| --- | --- |
-| `e2e/pokemon-list.spec.ts` | `/` を開くとカードが表示され、カードを押すと `/pokemon/{id}` に移って詳細が表示されること。ページを送ると、URL の `page` クエリと表示されるポケモンが変わること |
-| `e2e/pokemon-detail.spec.ts` | 詳細ページの「一覧へ戻る」で、元のページ番号の一覧に戻ること |
-| `e2e/theme.spec.ts` | テーマを Dark・Light に切り替えると、`html` 要素の `class` が切り替わること |
+| テストファイル               | 確かめること                                                                                                                                                    |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `e2e/pokemon-list.spec.ts`   | `/` を開くとカードが表示され、カードを押すと `/pokemon/{id}` に移って詳細が表示されること。ページを送ると、URL の `page` クエリと表示されるポケモンが変わること |
+| `e2e/pokemon-detail.spec.ts` | 詳細ページの「一覧へ戻る」で、元のページ番号の一覧に戻ること                                                                                                    |
+| `e2e/theme.spec.ts`          | テーマを Dark・Light に切り替えると、`html` 要素の `class` が切り替わること                                                                                     |
 
 #82 で導入するもの：`@playwright/test`。ブラウザは `pnpm exec playwright install chromium` で取得します。`playwright.config.ts` の設定は次のとおりです。
 
@@ -292,22 +292,22 @@ playwright.config.ts
 
 ### 評価
 
-| 観点 | 単体・結合（Vitest） | E2E（Playwright） |
-| --- | --- | --- |
-| 1 つのコマンド・短い時間・機械的な判定 | `pnpm test` の 1 つで、単体と結合をまとめて実行します。`vitest run` は監視を続けずに終了し、成否を終了コードで返します | `pnpm test:e2e` の 1 つで、ビルド・起動・テストを行います。ビルドを含むため、単体・結合より遅くなります |
-| PokeAPI に依存しない再現性 | MSW が差し替えていないリクエストを失敗にします | `page.route` で PokeAPI と画像を差し替え、それ以外の外部へのリクエストを止めます。ビルドのときのフォントの取得だけが、外部に依存します |
-| 失敗したときの出力 | テストの名前、ファイルと行、期待した値と実際の値の差分を出力します | テストの名前と、失敗した操作・アサーションの行を出力します。トレースのファイルに、失敗までの DOM とネットワークの記録が残ります |
-| 手本にできる規約 | 配置と書き方を下の規約に定めます | 同じ |
+| 観点                                   | 単体・結合（Vitest）                                                                                                   | E2E（Playwright）                                                                                                                      |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 1 つのコマンド・短い時間・機械的な判定 | `pnpm test` の 1 つで、単体と結合をまとめて実行します。`vitest run` は監視を続けずに終了し、成否を終了コードで返します | `pnpm test:e2e` の 1 つで、ビルド・起動・テストを行います。ビルドを含むため、単体・結合より遅くなります                                |
+| PokeAPI に依存しない再現性             | MSW が差し替えていないリクエストを失敗にします                                                                         | `page.route` で PokeAPI と画像を差し替え、それ以外の外部へのリクエストを止めます。ビルドのときのフォントの取得だけが、外部に依存します |
+| 失敗したときの出力                     | テストの名前、ファイルと行、期待した値と実際の値の差分を出力します                                                     | テストの名前と、失敗した操作・アサーションの行を出力します。トレースのファイルに、失敗までの DOM とネットワークの記録が残ります        |
+| 手本にできる規約                       | 配置と書き方を下の規約に定めます                                                                                       | 同じ                                                                                                                                   |
 
 ### 実行するコマンド
 
-| コマンド | 内容 | 実行時間の目安 | いつ実行するか |
-| --- | --- | --- | --- |
-| `pnpm lint`・`pnpm exec tsc --noEmit` | 静的解析 | 30 秒以内 | すべての変更のあと |
-| `pnpm test:unit` | 単体テスト（`vitest run --project unit`） | 10 秒以内 | `utils/`・`lib/`・`store/` を変えたとき |
-| `pnpm test:integration` | 結合テスト（`vitest run --project integration`） | 60 秒以内 | `components/`・`hooks/`・`pages/` を変えたとき |
-| `pnpm test` | 単体と結合（`vitest run`） | 60 秒以内 | すべての変更のあと |
-| `pnpm test:e2e` | E2E テスト（`playwright test`） | ビルドを含めて 3 分以内 | `pages/`・ルーティング・テーマ・レイアウトを変えたとき、PR を作る前 |
+| コマンド                              | 内容                                             | 実行時間の目安          | いつ実行するか                                                      |
+| ------------------------------------- | ------------------------------------------------ | ----------------------- | ------------------------------------------------------------------- |
+| `pnpm lint`・`pnpm exec tsc --noEmit` | 静的解析                                         | 30 秒以内               | すべての変更のあと                                                  |
+| `pnpm test:unit`                      | 単体テスト（`vitest run --project unit`）        | 10 秒以内               | `utils/`・`lib/`・`store/` を変えたとき                             |
+| `pnpm test:integration`               | 結合テスト（`vitest run --project integration`） | 60 秒以内               | `components/`・`hooks/`・`pages/` を変えたとき                      |
+| `pnpm test`                           | 単体と結合（`vitest run`）                       | 60 秒以内               | すべての変更のあと                                                  |
+| `pnpm test:e2e`                       | E2E テスト（`playwright test`）                  | ビルドを含めて 3 分以内 | `pages/`・ルーティング・テーマ・レイアウトを変えたとき、PR を作る前 |
 
 実行時間は、各 Sub-issue で実際に測り、目安を大きく超える場合は PR に書きます。どのスクリプトも、監視を続けるモード（watch）では実行しません。エージェントがコマンドの終了を待てなくなるためです。人が監視しながら書くときは、`pnpm exec vitest` を直接使います。
 
