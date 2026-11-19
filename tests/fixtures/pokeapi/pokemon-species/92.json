@@ -1,0 +1,161 @@
+{
+  "id": 92,
+  "name": "gastly",
+  "order": 100,
+  "gender_rate": 4,
+  "capture_rate": 190,
+  "base_happiness": 70,
+  "is_baby": false,
+  "is_legendary": false,
+  "is_mythical": false,
+  "hatch_counter": 20,
+  "has_gender_differences": false,
+  "forms_switchable": false,
+  "growth_rate": {
+    "name": "medium-slow",
+    "url": "https://pokeapi.co/api/v2/growth-rate/4/"
+  },
+  "pokedex_numbers": [
+    {
+      "entry_number": 92,
+      "pokedex": {
+        "name": "national",
+        "url": "https://pokeapi.co/api/v2/pokedex/1/"
+      }
+    },
+    {
+      "entry_number": 92,
+      "pokedex": {
+        "name": "kanto",
+        "url": "https://pokeapi.co/api/v2/pokedex/2/"
+      }
+    }
+  ],
+  "egg_groups": [
+    {
+      "name": "indeterminate",
+      "url": "https://pokeapi.co/api/v2/egg-group/11/"
+    }
+  ],
+  "color": {
+    "name": "purple",
+    "url": "https://pokeapi.co/api/v2/pokemon-color/7/"
+  },
+  "shape": {
+    "name": "ball",
+    "url": "https://pokeapi.co/api/v2/pokemon-shape/1/"
+  },
+  "evolves_from_species": null,
+  "evolution_chain": {
+    "url": "https://pokeapi.co/api/v2/evolution-chain/40/"
+  },
+  "habitat": {
+    "name": "cave",
+    "url": "https://pokeapi.co/api/v2/pokemon-habitat/1/"
+  },
+  "generation": {
+    "name": "generation-i",
+    "url": "https://pokeapi.co/api/v2/generation/1/"
+  },
+  "names": [
+    {
+      "name": "ゴース",
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      }
+    },
+    {
+      "name": "Gastly",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      }
+    },
+    {
+      "name": "ゴース",
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      }
+    }
+  ],
+  "pal_park_encounters": [
+    {
+      "base_score": 50,
+      "rate": 30,
+      "area": {
+        "name": "forest",
+        "url": "https://pokeapi.co/api/v2/pal-park-area/1/"
+      }
+    }
+  ],
+  "form_descriptions": [],
+  "flavor_text_entries": [
+    {
+      "flavor_text": "Almost invisible,\nthis gaseous\nPOKéMON cloaks\fthe target and\nputs it to sleep\nwithout notice.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "version": {
+        "name": "red",
+        "url": "https://pokeapi.co/api/v2/version/1/"
+      }
+    },
+    {
+      "flavor_text": "ガスでできた　薄い　体は\nどんな　大きさの　相手も\n包みこみ　息の根を　止める。",
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      },
+      "version": {
+        "name": "x",
+        "url": "https://pokeapi.co/api/v2/version/23/"
+      }
+    },
+    {
+      "flavor_text": "ガスでできた　うすい　からだは\nどんな　おおきさの　あいても\nつつみこみ　いきのねを　とめる。",
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "version": {
+        "name": "x",
+        "url": "https://pokeapi.co/api/v2/version/23/"
+      }
+    }
+  ],
+  "genera": [
+    {
+      "genus": "ガスじょうポケモン",
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      }
+    },
+    {
+      "genus": "Gas Pokémon",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      }
+    },
+    {
+      "genus": "ガスじょうポケモン",
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      }
+    }
+  ],
+  "varieties": [
+    {
+      "is_default": true,
+      "pokemon": {
+        "name": "gastly",
+        "url": "https://pokeapi.co/api/v2/pokemon/92/"
+      }
+    }
+  ]
+}

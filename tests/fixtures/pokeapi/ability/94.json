@@ -1,0 +1,104 @@
+{
+  "id": 94,
+  "name": "solar-power",
+  "is_main_series": true,
+  "generation": {
+    "name": "generation-iv",
+    "url": "https://pokeapi.co/api/v2/generation/4/"
+  },
+  "names": [
+    {
+      "name": "サンパワー",
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      }
+    },
+    {
+      "name": "Solar Power",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      }
+    },
+    {
+      "name": "サンパワー",
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      }
+    }
+  ],
+  "effect_entries": [
+    {
+      "effect": "During strong sunlight, this Pokémon has 1.5× its Special Attack but takes 1/8 of its maximum HP in damage after each turn.",
+      "short_effect": "Increases Special Attack to 1.5× but costs 1/8 max HP after each turn during strong sunlight.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      }
+    }
+  ],
+  "effect_changes": [],
+  "flavor_text_entries": [
+    {
+      "flavor_text": "Boosts Sp. Atk, but\nlowers HP in sunshine.",
+      "language": {
+        "name": "en",
+        "url": "https://pokeapi.co/api/v2/language/9/"
+      },
+      "version_group": {
+        "name": "diamond-pearl",
+        "url": "https://pokeapi.co/api/v2/version-group/8/"
+      }
+    },
+    {
+      "flavor_text": "晴れると　ＨＰが　減るが\n特攻が　あがる。",
+      "language": {
+        "name": "ja",
+        "url": "https://pokeapi.co/api/v2/language/11/"
+      },
+      "version_group": {
+        "name": "x-y",
+        "url": "https://pokeapi.co/api/v2/version-group/15/"
+      }
+    },
+    {
+      "flavor_text": "はれると　ＨＰが　へるが\nとくこうが　あがる。",
+      "language": {
+        "name": "ja-hrkt",
+        "url": "https://pokeapi.co/api/v2/language/1/"
+      },
+      "version_group": {
+        "name": "x-y",
+        "url": "https://pokeapi.co/api/v2/version-group/15/"
+      }
+    }
+  ],
+  "pokemon": [
+    {
+      "is_hidden": true,
+      "slot": 3,
+      "pokemon": {
+        "name": "charmander",
+        "url": "https://pokeapi.co/api/v2/pokemon/4/"
+      }
+    },
+    {
+      "is_hidden": true,
+      "slot": 3,
+      "pokemon": {
+        "name": "charmeleon",
+        "url": "https://pokeapi.co/api/v2/pokemon/5/"
+      }
+    },
+    {
+      "is_hidden": true,
+      "slot": 3,
+      "pokemon": {
+        "name": "charizard",
+        "url": "https://pokeapi.co/api/v2/pokemon/6/"
+      }
+    }
+  ]
+}
